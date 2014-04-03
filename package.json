@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/FMISoftwareTechnologiesProject/dyslexio/issues"
   },
-  "homepage": "https://github.com/FMISoftwareTechnologiesProject/dyslexio"
+  "homepage": "https://github.com/FMISoftwareTechnologiesProject/dyslexio",
+  "devDependencies": {
+    "gulp": "~3.6.0",
+    "gulp-livereload": "~1.2.0",
+    "node-static": "~0.7.3",
+    "gulp-util": "~2.2.14"
+  }
 }
