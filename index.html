@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="src/lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
     <div id="wrapper">
@@ -11,55 +13,29 @@
         <ul class="sidebar-nav">
           <li class="sidebar-brand"><a href="#">Dyslexio</a>
           </li>
+          <li>a</li>
+          <li>b</li>
+          <li>c</li>
+          <li>d</li>
+          <li>e</li>
         </ul>
       </div>
 
-        <!-- Page content -->
-      <div id="page-content-wrapper">
-        <div class="content-header">
-          <h1>
-            <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
-              Simple Sidebar
-          </h1>
-        </div>
-        <!-- Keep all page content within the page-content inset div! -->
-        <div class="page-content inset">
-          <div class="row">
-            <div class="col-md-12">
-              <p class="lead">This simple sidebar template has a hint of JavaScript to make the template responsive. It also includes Font Awesome icon fonts.</p>
-            </div>
-            <div class="col-md-6">
-              <p class="well">The template still uses the default Bootstrap rows and columns.</p>
-            </div>
-            <div class="col-md-6">
-              <p class="well">But the full-width layout means that you wont be using containers.</p>
-            </div>
-            <div class="col-md-4">
-              <p class="well">Three Column Example</p>
-            </div>
-            <div class="col-md-4">
-              <p class="well">Three Column Example</p>
-            </div>
-            <div class="col-md-4">
-              <p class="well">You get the idea! Do whatever you want in the page content area!</p>
-            </div>
-          </div>
-        </div>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li><a href="#">Начало</a></li>
+          <li><a href="#">За проекта</a></li>
+          <li><a href="#">Помощ</a></li>
+        </ul>
       </div>
+    </nav>
 
     </div>
 
     <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
-
-    <!-- Custom JavaScript for the Menu Toggle -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("active");
-    });
-    </script>
+    <script src="src/lib/jquery/dist/jquery.js"></script>
+    <script src="src/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
   </body>
 </html>
