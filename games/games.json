@@ -1,0 +1,7 @@
+[
+  {
+    id: 'game1',
+    name: 'First game',
+    description: 'Game description'
+  }
+]

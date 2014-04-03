@@ -1,0 +1,19 @@
+{
+  "name": "dyslexio",
+  "version": "0.0.0",
+  "description": "Web application, which contains games for children with dyslexia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FMISoftwareTechnologiesProject/dyslexio.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FMISoftwareTechnologiesProject/dyslexio/issues"
+  },
+  "homepage": "https://github.com/FMISoftwareTechnologiesProject/dyslexio"
+}
