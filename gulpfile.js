@@ -20,7 +20,8 @@ gulp.task('staticsvr', function (next) {
 
 gulp.task('watch', ['staticsvr'], function () {
   var server = livereload();
-  gulp.watch('/**').on('change', function (file) {
+  gulp.watch(['./src/**/*.js', './src/games/**', './**/*.html'])
+  .on('change', function (file) {
       server.changed(file.path);
-  });
+    });
 });
