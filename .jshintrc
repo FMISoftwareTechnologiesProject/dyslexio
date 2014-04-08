@@ -28,10 +28,9 @@
   "globals": {
     "gutil": true,
     "$": true,
+    "jQuery": true,
     "console": true,
-    "CONFIG": true,
-    "GameFactory": true,
-    "Game": true,
+    "Dyslexio": true,
     "location": true
   }
 }

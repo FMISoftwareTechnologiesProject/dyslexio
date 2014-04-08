@@ -1,6 +1,9 @@
 'use strict';
 
-var GameFactory = (function () {
+var Dyslexio = Dyslexio || {};
+Dyslexio.Models = Dyslexio.Models || {};
+
+Dyslexio.Models.GameFactory = (function () {
 
   var INSTANCE;
 
@@ -27,12 +30,13 @@ var GameFactory = (function () {
       return INSTANCE;
     },
     init: function () {
-      return $.getJSON(CONFIG.GAMES_BASE + '/' + CONFIG.GAMES_CONFIG,
+      return $.getJSON(Dyslexio.CONFIG.GAMES_BASE
+        + '/' + Dyslexio.CONFIG.GAMES_CONFIG,
       function (games) {
         INSTANCE = GameFactory();
         var self = INSTANCE;
         $.each(games, function (idx) {
-          self.games[games[idx].id] = new Game(games[idx]);
+          self.games[games[idx].id] = new Dyslexio.Models.Game(games[idx]);
         });
       })
       .fail(function () {

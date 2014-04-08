@@ -1,15 +1,18 @@
 'use strict';
 
-function Game(game) {
+var Dyslexio = Dyslexio || {};
+Dyslexio.Models = Dyslexio.Models || {};
+
+Dyslexio.Models.Game = function (game) {
   this.id = game.id;
   this.description = game.description;
-  this.url = CONFIG.GAMES_BASE + '/' + this.id;
+  this.url = Dyslexio.CONFIG.GAMES_BASE + '/' + this.id;
   this.template = null;
   this.scripts = [];
   this.styles = [];
-}
+};
 
-Game.prototype.load = function () {
+Dyslexio.Models.Game.prototype.load = function () {
 
   function getURL(url, selfUrl) {
     return selfUrl + '/' + url.replace(location.href, '');
@@ -46,7 +49,7 @@ Game.prototype.load = function () {
   });
 };
 
-Game.prototype.get = function () {
+Dyslexio.Models.Game.prototype.get = function () {
   if (this.loaded) {
     return $.when(this);
   } else {
