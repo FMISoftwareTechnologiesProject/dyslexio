@@ -1,6 +1,10 @@
 /* Main JS file */
 
+'use strict';
+
 GameFactory.init()
-.then(function () {
-  console.log('Initialized');
+.done(function (data) {
+  console.log('Initialized', data);
+  GameFactory.getInstance()
+  .getGame('game1');
 });
