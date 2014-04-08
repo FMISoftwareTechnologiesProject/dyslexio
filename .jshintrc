@@ -31,6 +31,7 @@
     "jQuery": true,
     "console": true,
     "Dyslexio": true,
-    "location": true
+    "location": true,
+    "document": true
   }
 }

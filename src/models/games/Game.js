@@ -21,10 +21,9 @@ Dyslexio.Models.Game.prototype.load = function () {
   var self = this;
   return $.get(this.url + '/index.html')
   .then(function (data) {
-    self.template = data;
-    data = '<section>' + data + '</section>';
+    data = $('<section>' + data + '</section>');
     var promises = [], promise, url, map;
-    $(data).find('script,style').each(function (id, ref) {
+    data.find('script,style').each(function (id, ref) {
       if (ref.tagName.toLowerCase() === 'script') {
         url = getURL(ref.src, self.url);
         map = self.scripts;
@@ -41,7 +40,9 @@ Dyslexio.Models.Game.prototype.load = function () {
         url: url
       });
       promises.push(promise);
+      ref.remove();
     });
+    self.template = data.html();
     return $.when(promises).then(function () {
       self.loaded = true;
       return self;
