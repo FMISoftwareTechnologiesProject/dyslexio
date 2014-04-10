@@ -30,8 +30,11 @@
     "$": true,
     "jQuery": true,
     "console": true,
+    "window": true,
     "Dyslexio": true,
     "location": true,
-    "document": true
+    "document": true,
+    "crossroads": true,
+    "Router": true
   }
 }

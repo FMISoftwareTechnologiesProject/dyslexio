@@ -17,6 +17,8 @@
   ],
   "dependencies": {
     "crossroads": "~0.12.0",
-    "signals": "~1.0.0"
+    "signals": "~1.0.0",
+    "jquery-hashchange": "*",
+    "jquery": "1.10"
   }
 }
