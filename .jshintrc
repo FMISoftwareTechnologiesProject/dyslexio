@@ -35,6 +35,6 @@
     "location": true,
     "document": true,
     "crossroads": true,
-    "Router": true
+    "hasher": true
   }
 }

@@ -7,7 +7,7 @@ Dyslexio.Views.SideNav = {
   el: $('#side-nav'),
   buildMenuItem: function (game) {
     var li = $('<li/>'),
-        item = $('<a href="javascript:void(0)"/>');
+        item = $('<a href="#/game/' + game.id + '"/>');
     item.data('game-id', game.id);
     item.text(game.title);
     li.append(item);

@@ -19,7 +19,7 @@ Dyslexio.Models.GameFactory = (function () {
       console.warn('No game with id', id);
       return null;
     }
-    return this.games[id].get();
+    return this.games[id];
   };
 
   return {
