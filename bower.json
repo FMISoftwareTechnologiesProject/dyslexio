@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "crossroads": "~0.12.0"
+    "crossroads": "~0.12.0",
+    "signals": "~1.0.0"
   }
 }
