@@ -30,6 +30,10 @@ Dyslexio.Models.GameFactory = (function () {
       return INSTANCE;
     },
     init: function () {
+      //Already initialized
+      if (INSTANCE) {
+        return $.when(INSTANCE);
+      }
       return $.getJSON(Dyslexio.CONFIG.GAMES_BASE
         + '/' + Dyslexio.CONFIG.GAMES_CONFIG,
       function (games) {
@@ -38,6 +42,7 @@ Dyslexio.Models.GameFactory = (function () {
         $.each(games, function (idx) {
           self.games[games[idx].id] = new Dyslexio.Models.Game(games[idx]);
         });
+        return INSTANCE;
       })
       .fail(function () {
         console.log('Prase error in games.json');
