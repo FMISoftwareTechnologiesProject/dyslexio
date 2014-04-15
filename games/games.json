@@ -3,5 +3,10 @@
     "id": "game1",
     "title": "First game",
     "description": "Game description"
+  },
+  {
+  	"id": "Syllables",
+  	"title": "Syllables",
+  	"description": "Syllable description"
   }
 ]
