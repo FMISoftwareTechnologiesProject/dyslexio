@@ -5,7 +5,7 @@ Dyslexio
 
 You need node.js, bower and gulp installed. When you resolve these dependencies enter root and:
 
-```shell
+```bash
 # Install all node dependencies (like Gulp and all required Gulp plugins)
 npm install
 # Install all dependencies (like jQuery, Crossroutes, etc.)
