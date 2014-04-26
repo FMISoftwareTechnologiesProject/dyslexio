@@ -1,13 +1,13 @@
 'use strict';
 
-function Word(text) {
+function Text(text) {
   this.text = text;
   EventEmitter.call(this);
 }
 
-Word.prototype = Object.create(EventEmitter.prototype);
+Text.prototype = Object.create(EventEmitter.prototype);
 
-Word.prototype.render = function (container) {
+Text.prototype.render = function (container) {
   var wrapper = $('<div class="word" />'),
       self = this,
       letter;
@@ -18,8 +18,56 @@ Word.prototype.render = function (container) {
     });
     letter.appendTo(wrapper);
   });
+  return wrapper;
 };
 
-Word.prototype.onLetterClick = function (cb) {
+Text.prototype.onLetterClick = function (cb) {
   this.addListener('letter-clicked', cb);
+};
+
+function Round(text, time) {
+  this.text = new Text(text);
+  this.time = time || Infinity;
+  this.ticks = 0;
+  EventEmitter.call(this);
+}
+
+Round.prototype.prototype = Object.create(EventEmitter.prototype);
+
+Round.prototype.start = function () {
+  var self = this;
+  setInterval(function () {
+    if (self.ticks > self.time) {
+      self.trigger('game-end');
+      return;
+    }
+    self.ticks += 1;
+    self.trigger('tick', [self.ticks]);
+  }, 1000);
+};
+
+Round.prototype.onTick = function (cb) {
+  this.addListener('tick', cb);
+};
+
+function GameView(container) {
+  this.timer = container.find('.timer');
+  this.text = container.find('.text');
+}
+
+GameView.prototype.updateTime = function (val) {
+  this.timer.text(val);
+};
+
+GameView.prototype.setText = function (text) {
+  this.text.empty();
+  this.text.append(text);
+};
+
+function Game() {
+  // body...
+}
+
+Game.prototype.start = function (rounds) {
+  // body...
 };
