@@ -130,3 +130,11 @@
 }
 
 }
+
+.audio-icon {
+  width: 32px;
+  height: 32px;
+  background-image: url(../images/audio.jpg);
+  cursor: pointer;
+  margin-left: 30px;
+}

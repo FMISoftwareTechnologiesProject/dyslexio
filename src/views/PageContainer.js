@@ -14,6 +14,9 @@ Dyslexio.Views.PageContainer = {
         self.selected = data.id;
       }
     });
+    $('.audio-icon').click(function () {
+      $('#jp_container_1').toggle();
+    });
   },
   loadTemplate: function (page) {
     console.log('Loading', page);
@@ -28,16 +31,23 @@ Dyslexio.Views.PageContainer = {
     this.container.empty();
     this.container.append(iframe);
     iframe.attr('src', game.url);
-    $('#jquery_jplayer_1').jPlayer({
-      ready: function () {
-        for (var audio in game.instructions) {
-          game.instructions[audio] = game.url + '/' + game.instructions[audio];
-        }
-        $(this).jPlayer('setMedia', game.instructions);
-      },
-      swfPath: '/js',
-      supplied: 'm4a, oga'
-    });
+    if (game.instructions) {
+      $('.audio-icon').show();
+      $('#jquery_jplayer_1').jPlayer({
+        ready: function () {
+          for (var audio in game.instructions) {
+            game.instructions[audio] =
+              game.url + '/' + game.instructions[audio];
+          }
+          $(this).jPlayer('setMedia', game.instructions);
+        },
+        swfPath: '/js',
+        supplied: 'm4a, oga'
+      });
+    } else {
+      $('#jp_container_1').hide();
+      $('.audio-icon').hide();
+    }
   },
   renderGame: function (game) {
     var self = this;
