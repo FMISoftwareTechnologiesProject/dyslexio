@@ -12,6 +12,7 @@
   {
     "id": "same-letters",
     "title": "Еднакви букви",
-    "description": "Разпознайте еднаквите букви в текста"
+    "description": "Разпознайте еднаквите букви в текста",
+    "instructions": "audio.m4a"
   }
 ]
