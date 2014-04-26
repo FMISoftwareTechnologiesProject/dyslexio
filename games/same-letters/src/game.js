@@ -65,9 +65,19 @@ GameView.prototype.setText = function (text) {
 };
 
 function Game() {
-  // body...
+  this.texts = ['Some long sentance blqlqlq foo and bar'];
+  this.currentRound = 0;
 }
 
-Game.prototype.start = function (rounds) {
-  // body...
+Game.prototype.start = function () {
+  var self = this;
+  this.round = new Round();
+  this.view = new GameView($('#container'));
+  this.currentRound += 1;
+  this.round.onTick(function (tick) {
+    self.view.updateTime(tick);
+  });
+  var text = new Text(this.texts[this.currentRound]);
+  this.view.setText(text);
+  this.round.start();
 };
