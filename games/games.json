@@ -5,8 +5,13 @@
     "description": "Game description"
   },
   {
-  	"id": "Syllables",
-  	"title": "Syllables",
-  	"description": "Syllable description"
+    "id": "Syllables",
+    "title": "Syllables",
+    "description": "Syllable description"
+  },
+  {
+    "id": "common-letters",
+    "title": "Еднакви букви",
+    "description": "Разпознайте еднаквите букви в текста"
   }
 ]
