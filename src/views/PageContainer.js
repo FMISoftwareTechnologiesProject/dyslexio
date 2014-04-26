@@ -28,7 +28,7 @@ Dyslexio.Views.PageContainer = {
     this.container.empty();
     this.container.append(iframe);
     iframe.attr('src', game.url);
-    $('#jquery_jplayer_1').jPlayer({
+    $('#jp_container_1').jPlayer({
       swfPath: 'src/lib/jplayer/jquery.jplayer/',
       solution: 'html, flash',
       supplied: 'm4a, oga',
@@ -64,6 +64,10 @@ Dyslexio.Views.PageContainer = {
       errorAlerts: false,
       warningAlerts: false
     });
+    for (var audio in game.instructions) {
+      game.instructions[audio] = game.url + '/' + game.instructions[audio];
+    }
+    $('#jp_container_1').jPlayer('setMedia', game.instructions);
   },
   renderGame: function (game) {
     var self = this;
