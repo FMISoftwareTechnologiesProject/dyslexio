@@ -25,6 +25,10 @@ Text.prototype.onLetterClick = function (cb) {
   this.addListener('letter-clicked', cb);
 };
 
+
+
+
+
 function Round(text, time) {
   this.text = new Text(text);
   this.time = time || Infinity;
@@ -50,6 +54,9 @@ Round.prototype.onTick = function (cb) {
   this.addListener('tick', cb);
 };
 
+
+
+
 function GameView(container) {
   this.timer = container.find('.timer');
   this.text = container.find('.text');
@@ -63,6 +70,9 @@ GameView.prototype.setText = function (text) {
   this.text.empty();
   this.text.append(text);
 };
+
+
+
 
 function Game() {
   this.texts = ['Some long sentance blqlqlq foo and bar'];
@@ -81,3 +91,6 @@ Game.prototype.start = function () {
   this.view.setText(text);
   this.round.start();
 };
+
+var game = new Game();
+game.start();

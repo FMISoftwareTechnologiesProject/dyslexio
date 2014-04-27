@@ -10,7 +10,7 @@ Dyslexio.Views.PageContainer = {
     var self = this;
     Dyslexio.PubSub.subscribe('game.selected', function (e, data) {
       if (self.selected !== data.id) {
-        self.loadGame(data);
+        self.loadGame(data.id);
         self.selected = data.id;
       }
     });
