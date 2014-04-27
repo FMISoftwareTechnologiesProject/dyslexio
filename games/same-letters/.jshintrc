@@ -1,0 +1,7 @@
+{
+  "globals": {
+    "EventEmitter": true,
+    "$": true,
+    "setInterval": true
+  }
+}
