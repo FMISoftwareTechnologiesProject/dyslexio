@@ -36,7 +36,7 @@ function Round(text, time) {
   EventEmitter.call(this);
 }
 
-Round.prototype.prototype = Object.create(EventEmitter.prototype);
+Round.prototype = Object.create(EventEmitter.prototype);
 
 Round.prototype.start = function () {
   var self = this;
