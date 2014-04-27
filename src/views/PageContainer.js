@@ -31,6 +31,7 @@ Dyslexio.Views.PageContainer = {
     this.container.empty();
     this.container.append(iframe);
     iframe.attr('src', game.url);
+    console.log('Loading game', gameId);
     if (game.instructions) {
       $('.audio-icon').show();
       $('#jquery_jplayer_1').jPlayer({
