@@ -1,1 +1,19 @@
 <h1>Home</h1>
+<script>
+$(function () {
+  var games = Dyslexio.Models.GameFactory.getInstance().getGames();
+  console.log(games);
+
+  //if (JSON.parse('false')) {
+  //  console.log('TRUE');
+  //}
+});
+</script>
+
+<div>
+  Choose game from the left navigation. In...
+  <br>
+  <label for="never-showagain-chkbx">
+    <input type="checkbox" name="never-showagain-chkbx"> Don't show me this again
+  </label>
+</div>

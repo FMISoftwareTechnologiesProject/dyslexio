@@ -22,6 +22,14 @@ Dyslexio.Models.GameFactory = (function () {
     return this.games[id];
   };
 
+  GameFactory.prototype.getGames = function () {
+    var games = [];
+    for (var game in this.games) {
+      games.push(this.games[game]);
+    }
+    return games;
+  };
+
   return {
     getInstance: function () {
       if (!INSTANCE) {
