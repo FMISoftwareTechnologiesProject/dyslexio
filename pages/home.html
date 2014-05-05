@@ -4,16 +4,36 @@ $(function () {
   var games = Dyslexio.Models.GameFactory.getInstance().getGames();
   console.log(games);
 
+  if (localStorage.getItem("hideFlag") === null) {
+    localStorage.setItem("hideFlag", "unhidden");
+  } else {
+    document.getElementById("instructions-block").className = localStorage.getItem("hideFlag");
+  }
+
   //if (JSON.parse('false')) {
   //  console.log('TRUE');
   //}
 });
+
+function unhide(divID) {
+    var item = document.getElementById(divID);
+    if (item) {
+      item.className = (item.className == 'hidden')?'unhidden':'hidden';
+      localStorage.setItem("hideFlag", item.className);
+    }
+  }
+
+
+
+
 </script>
 
+<div id="instructions-block" class="unhidden">
+  Choose game from the left navigation. 
+</div>
+
 <div>
-  Choose game from the left navigation. In...
-  <br>
   <label for="never-showagain-chkbx">
-    <input type="checkbox" name="never-showagain-chkbx"> Don't show me this again
+    <input type="checkbox" name="never-showagain-chkbx" onclick="unhide('instructions-block')"> Don't show me this again
   </label>
 </div>
