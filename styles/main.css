@@ -138,11 +138,3 @@
   cursor: pointer;
   margin-left: 30px;
 }
-
-.hidden {
-  display: none;
-}
-
-.unhidden {
-  display: block;
-}

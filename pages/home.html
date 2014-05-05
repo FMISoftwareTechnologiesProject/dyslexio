@@ -1,39 +1,47 @@
 <h1>Home</h1>
+<script src="../src/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script>
 $(function () {
   var games = Dyslexio.Models.GameFactory.getInstance().getGames();
   console.log(games);
 
-  if (localStorage.getItem("hideFlag") === null) {
-    localStorage.setItem("hideFlag", "unhidden");
-  } else {
-    document.getElementById("instructions-block").className = localStorage.getItem("hideFlag");
-  }
-
   //if (JSON.parse('false')) {
   //  console.log('TRUE');
   //}
+
+  if (localStorage.getItem("hideFlag") === null) {
+    localStorage.setItem("hideFlag", "show");
+  }
+  
+  var state = localStorage.getItem("hideFlag");
+  $('#instructions-modal').modal(state);
+  
 });
 
-function unhide(divID) {
-    var item = document.getElementById(divID);
-    if (item) {
-      item.className = (item.className == 'hidden')?'unhidden':'hidden';
-      localStorage.setItem("hideFlag", item.className);
-    }
-  }
-
-
-
-
+function hideInstructions() {
+      localStorage.setItem("hideFlag", "hide");
+}
 </script>
 
-<div id="instructions-block" class="unhidden">
-  Choose game from the left navigation. 
+<!-- Modal -->
+<div class="modal fade" id="instructions-modal" tabindex="-1" role="dialog" aria-labelledby="Instructions" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="instructions-label">Instructions</h4>
+      </div>
+      <div class="modal-body">
+        Choose game from the left navigation. 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">I think I'll read them again!</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="hideInstructions()">Got it!</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 
-<div>
-  <label for="never-showagain-chkbx">
-    <input type="checkbox" name="never-showagain-chkbx" onclick="unhide('instructions-block')"> Don't show me this again
-  </label>
-</div>
+
+
