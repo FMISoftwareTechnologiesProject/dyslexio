@@ -22,6 +22,6 @@ gulp.task('watch', ['staticsvr'], function () {
   var server = livereload();
   gulp.watch(['./src/**/*.js', './src/games/**', './**/*.html'])
   .on('change', function (file) {
-      server.changed(file.path);
-    });
+    server.changed(file.path);
+  });
 });
