@@ -1,0 +1,96 @@
+<!doctype html>
+<html >
+  <head>
+    <meta charset="utf-8"> 
+    <script src="../../src/lib/jquery/jquery.js"></script>
+    <script src="../../src/lib/jquery-ui/ui/jquery-ui.js"></script>
+    <style>
+      .draggable { font-size: 72px; }
+      .droppable { display: inline-block; }
+      .drop-hover { background-color: green; width: 30px; }
+    </style>
+    <script>
+      var sentence = 'Сложи#запетая тук#и точка тук#';
+	  var game = 0;
+	  var c = 0;
+	  var limit = 1;
+	  var texts = ['text1.txt', 'text2.txt'];
+      var punctSymbols = [',', '.', '?'];
+      var correctSentences = ['Сложи запетая тук, и точка тук.','Сложи точка тук.'];
+      var sencenceDiv;
+	  
+	  function loadText() {
+	    
+	    $("#helpDiv").load(texts[game], startNewRound);
+		c = game;
+		if(game == limit) {
+		game=0;
+		}
+		else {
+		game++;
+		}
+	  }
+	  
+	  function startNewGame() {
+	         loadText();
+	  
+	  }
+	         
+      function startNewRound() {
+	  	
+		sentence =$('#helpDiv').text();
+		
+        sentenceDiv = sentence.replace(/#/g, '<span class="droppable">&nbsp;</span>');
+        
+        $('#punctuationHolder').empty();
+        for (var i = 0; i < punctSymbols.length; i++) {
+          $('<span />' , {text: punctSymbols[i], class: 'draggable'}).appendTo('#punctuationHolder');
+        }
+        $('.draggable').draggable({revert: true});
+        
+        resetRound();
+      }
+      
+      function resetRound() {
+        $('#sentenceHolder').empty();
+        $('#sentenceHolder').html(sentenceDiv);
+        $('.droppable').droppable({
+          hoverClass: 'drop-hover',
+          tolerance: 'touch',
+          drop: function(event, ui) {
+            $(this).html(ui.draggable.html() + '&nbsp;');
+          }
+        });
+      }
+      
+      function checkSolution() {
+	    
+        var correct = $('#sentenceHolder').text().replace(/\u00a0/g,' ').trim() == correctSentences[c];
+        if(correct) {
+          alert('Поздравления! Решихте правилно задачата');
+          loadText();
+        } else {
+          alert('Имате грешки в решението. Опитайте отново');
+        }
+      }
+      
+      $(function() {
+        $('#checkButton').click(checkSolution);
+        $('#resetButton').click(resetRound);
+        $('#newRoundButton').click(startNewGame);
+        
+        loadText();
+      });
+    </script>
+  </head>
+  <body>
+    <div id="sentenceHolder"></div>
+    <div id="punctuationHolder"></div>
+	<div id="helpDiv" style="display: none;"></div>
+    <div>
+      <input id="checkButton" type="button" value="Готово">
+      <input id="resetButton" type="button" value="Започни отначало">
+      <input id="newRoundButton" type="button" value="Ново изречение">
+    </div>
+  </body>
+</html>
