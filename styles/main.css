@@ -217,3 +217,7 @@ a.jp-stop {
 .jp-gui, .jp-interface {
   border-radius: 20px;
 }
+
+div.jp-audio ul.jp-controls {
+  width: 100% !important;
+}

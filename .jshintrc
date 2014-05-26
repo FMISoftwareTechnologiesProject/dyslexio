@@ -35,6 +35,7 @@
     "location": true,
     "document": true,
     "crossroads": true,
-    "hasher": true
+    "hasher": true,
+    "alert": true
   }
 }

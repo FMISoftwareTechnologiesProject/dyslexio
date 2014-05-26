@@ -77,12 +77,17 @@ Dyslexio.Views.PageContainer = {
           game.instructions[audio] =
             game.url + '/' + game.instructions[audio];
         }
+        console.log(game.instructions);
         $(this).jPlayer('setMedia', game.instructions);
         self.player.hide();
         self.player.addClass('transparent');
       },
       swfPath: '/js',
-      supplied: 'm4a, oga'
+      volume: 1,
+      supplied: 'm4a, oga',
+      cssSelectorAncestor: '#jp_container_1',
+      wmode: 'window',
+      keyEnabled: true
     });
   },
 
