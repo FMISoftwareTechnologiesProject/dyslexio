@@ -7,13 +7,6 @@ Dyslexio.Views.PageContainer = {
   container: $('#page-container'),
   selected: null,
   init: function () {
-    var self = this;
-    Dyslexio.PubSub.subscribe('game.selected', function (e, data) {
-      if (self.selected !== data.id) {
-        self.loadGame(data.id);
-        self.selected = data.id;
-      }
-    });
     $('.audio-icon').click(function () {
       $('#jp_container_1').toggle();
     });
