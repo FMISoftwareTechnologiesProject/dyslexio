@@ -16,5 +16,10 @@
     "instructions": {
       "m4a": "audio.m4a"
     }
-  }
+  },
+  {
+    "id": "punctuation",
+    "title": "Пунктуация",
+    "description": "Сложете пунктуационните знаци на правилните места"
+  }  
 ]
