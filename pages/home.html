@@ -3,23 +3,17 @@
 <script>
 $(function () {
   var games = Dyslexio.Models.GameFactory.getInstance().getGames();
-  console.log(games);
-
-  //if (JSON.parse('false')) {
-  //  console.log('TRUE');
-  //}
 
   if (localStorage.getItem("hideFlag") === null) {
     localStorage.setItem("hideFlag", "show");
   }
-  
+
   var state = localStorage.getItem("hideFlag");
   $('#instructions-modal').modal(state);
-  
 });
 
 function hideInstructions() {
-      localStorage.setItem("hideFlag", "hide");
+  localStorage.setItem("hideFlag", "hide");
 }
 </script>
 
