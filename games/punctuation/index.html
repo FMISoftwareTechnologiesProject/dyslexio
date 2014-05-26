@@ -2,8 +2,6 @@
 <html >
   <head>
     <meta charset="utf-8"> 
-    <script src="../../src/lib/jquery/jquery.js"></script>
-    <script src="../../src/lib/jquery-ui/ui/jquery-ui.js"></script>
     <style>
       .draggable { font-size: 72px; }
       .droppable { display: inline-block; }
@@ -17,11 +15,14 @@
     <div>Сложете пунктуационните знаци на правилните места</div>
     <div id="sentenceHolder"></div>
     <div id="punctuationHolder"></div>
-	<div id="helpDiv" style="display: none;"></div>
+  <div id="helpDiv" style="display: none;"></div>
     <div>
       <input id="checkButton" type="button" value="Готово">
       <input id="resetButton" type="button" value="Започни отначало">
       <input id="newRoundButton" type="button" value="Ново изречение">
     </div>
+    <script src="../../src/lib/jquery/jquery.js"></script>
+    <script src="../../src/lib/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="game.js"></script>
   </body>
 </html>
