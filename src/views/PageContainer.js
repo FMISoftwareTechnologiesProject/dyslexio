@@ -6,6 +6,7 @@ Dyslexio.Views = Dyslexio.Views || {};
 Dyslexio.Views.PageContainer = {
   container: $('#page-container'),
   selected: null,
+  pageCache: {},
   init: function () {
     $('.audio-icon').click(function () {
       $('#jp_container_1').toggle();
@@ -13,9 +14,18 @@ Dyslexio.Views.PageContainer = {
   },
   loadTemplate: function (page) {
     console.log('Loading', page);
+    var self = this;
     this.hideAudio();
     this.container.empty();
-    this.container.load(page);
+    if (this.pageCache[page]) {
+      this.container.html(this.pageCache[page]);
+    } else {
+      $.get(page)
+      .done(function (template) {
+        self.container.html(template);
+        self.pageCache[page] = template;
+      });
+    }
   },
   hideAudio: function () {
     $('#jp_container_1').hide();
