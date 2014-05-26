@@ -20,25 +20,28 @@ Dyslexio.Views.PageContainer = {
   },
 
   startLoading: function () {
-    this.spinner.addClass('visible');
+    this.spinner.removeClass('transparent');
   },
 
   endLoading: function () {
-    this.spinner.removeClass('visible');
+    this.spinner.addClass('transparent');
   },
 
   loadTemplate: function (page) {
     console.log('Loading', page);
     var self = this;
+    this.startLoading();
     this.hideAudio();
     this.container.empty();
     if (this.pageCache[page]) {
       this.container.html(this.pageCache[page]);
+      this.endLoading();
     } else {
       $.get(page)
       .done(function (template) {
         self.container.html(template);
         self.pageCache[page] = template;
+        self.endLoading();
       });
     }
   },
@@ -69,10 +72,15 @@ Dyslexio.Views.PageContainer = {
     var game = Dyslexio.Models
           .GameFactory.getInstance()
           .getGame(gameId),
-        iframe = $('<iframe class="game-iframe" />');
+        iframe = $('<iframe class="game-iframe" />'),
+        self = this;
+    this.startLoading();
     this.container.empty();
     this.container.append(iframe);
     iframe.attr('src', game.url);
+    iframe[0].onload = function () {
+      self.endLoading();
+    };
     console.log('Loading game', gameId);
     if (game.instructions) {
       this.showAudio(game.instructions);

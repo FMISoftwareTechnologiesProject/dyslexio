@@ -138,3 +138,23 @@
   cursor: pointer;
   margin-left: 30px;
 }
+
+.spinner {
+  -moz-transition: 0.3s opacity;
+  -ms-transition: 0.3s opacity;
+  -webkit-transition: 0.3s opacity;
+  transition: 0.3s opacity;
+  opacity: 1;
+  width: 43px;
+  height: 11px;
+  background-image: url(../images/spinner.gif);
+  display: inline-block;
+}
+
+.spinner.transparent {
+  opacity: 0;
+}
+
+.spin-holder {
+  text-align: center;
+}
