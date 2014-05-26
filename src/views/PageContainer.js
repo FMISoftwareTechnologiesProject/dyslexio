@@ -44,7 +44,6 @@ Dyslexio.Views.PageContainer = {
   },
 
   loadTemplate: function (page) {
-    console.log('Loading', page);
     var self = this;
     this.startLoading();
     this.hideAudio();
@@ -53,6 +52,7 @@ Dyslexio.Views.PageContainer = {
       this.container.html(this.pageCache[page]);
       this.endLoading();
     } else {
+      console.log('Loading', page);
       $.get(page)
       .done(function (template) {
         self.container.html(template);
@@ -77,14 +77,17 @@ Dyslexio.Views.PageContainer = {
           game.instructions[audio] =
             game.url + '/' + game.instructions[audio];
         }
-        console.log(game.instructions);
         $(this).jPlayer('setMedia', game.instructions);
         self.player.hide();
         self.player.addClass('transparent');
       },
+      ended: function () {
+        $('#jp_audio_0').removeAttr('src');
+        $('#jp_audio_0').attr('src', game.instructions.m4a);
+      },
       swfPath: '/js',
       volume: 1,
-      supplied: 'm4a, oga',
+      supplied: 'm4a, ogg',
       cssSelectorAncestor: '#jp_container_1',
       wmode: 'window',
       keyEnabled: true
@@ -132,3 +135,4 @@ Dyslexio.Views.PageContainer = {
 };
 
 Dyslexio.Views.PageContainer.init();
+
