@@ -11,6 +11,14 @@
     console.log('Initialized', data);
     Dyslexio.Models.GameFactory.getInstance()
     .getGame('game1');
+
+    
+  });
+
+  Dyslexio.Models.DifficultyLevelManager.init()
+  .done(function (data) {
+    //Dyslexio.Models.DifficultyLevelManager.getInstance().getDifficultyLevels();
+    console.log('DLM Initialized', data);
   });
 
   crossroads.addRoute('/',
