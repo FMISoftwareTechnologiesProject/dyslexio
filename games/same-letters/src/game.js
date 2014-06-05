@@ -25,6 +25,14 @@ Text.prototype.onLetterClick = function (cb) {
   this.addListener('letter-clicked', cb);
 };
 
+Text.prototype.getDifferentLetters = function () {
+  var res = {};
+  for (var i = 0; i < this.text.length; i += 1) {
+    res[this.text[i]] = true;
+  }
+  return Object.keys(res);
+};
+
 
 
 
@@ -71,6 +79,19 @@ GameView.prototype.setText = function (text) {
   this.text.append(text);
 };
 
+function Colors() {
+}
+
+Colors.prototype.generate = function (count) {
+};
+
+
+function ColorPicker() {
+}
+
+ColorPicker.prototype.generateForLetters = function () {
+};
+
 
 
 
@@ -83,13 +104,14 @@ Game.prototype.start = function () {
   var self = this;
   this.round = new Round();
   this.view = new GameView($('#container'));
-  this.currentRound += 1;
   this.round.onTick(function (tick) {
     self.view.updateTime(tick);
   });
   var text = new Text(this.texts[this.currentRound]);
-  this.view.setText(text);
+  var differentLetters = text.getDifferentLetters();
+  this.view.setText(text.render());
   this.round.start();
+  this.currentRound += 1;
 };
 
 var game = new Game();
