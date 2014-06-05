@@ -27,7 +27,7 @@ Text.prototype.onLetterClick = function (cb) {
 
 Text.prototype.getDifferentLetters = function () {
   var res = {};
-  for (var i = 0; i < this.text.length; i += 1) {
+  for (var i = 0; i < this.text.toUpperCase().length; i += 1) {
     res[this.text[i]] = true;
   }
   return Object.keys(res);
@@ -118,11 +118,26 @@ Colors.HSVtoRGB = function (h, s, l){
 
 
 function ColorPicker() {
+  EventEmitter.call(this);
 }
+
+ColorPicker.prototype.colorSelected = function () {
+};
+
+ColorPicker.prototype.onColorSelected = function () {
+};
 
 ColorPicker.prototype.generate = function (letters) {
   var colors = Colors.generate(letters.length),
-      picker = '<div class="color-picker">';
+      picker = $('<div class="color-picker"></div>'),
+      c, cell, self = this;
+  letters.forEach(function (l, idx) {
+    c = colors[idx];
+    cell += $('<span class="color-picker-cell" style="background-color: rgb('+ c[0] + ',' + c[1] + ',' + c[2] + ');">' + l + '</span>');
+    cell.on('click', self.colorSelected);
+    picker.append(cell);
+  });
+  return picker;
 };
 
 
@@ -142,6 +157,8 @@ Game.prototype.start = function () {
   });
   var text = new Text(this.texts[this.currentRound]);
   var differentLetters = text.getDifferentLetters();
+  var picker = new ColorPicker().generate(differentLetters);
+  console.log(picker);
   this.view.setText(text.render());
   this.round.start();
   this.currentRound += 1;
