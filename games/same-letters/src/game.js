@@ -1,3 +1,5 @@
+/* global alert: false */
+
 'use strict';
 
 function Text(text) {
@@ -14,7 +16,7 @@ Text.prototype.render = function (container) {
   this.text.split('').forEach(function (l) {
     letter = $('<span class="word-letter">' + l + '</span>');
     letter.click(function () {
-      self.trigger('letter-clicked', [l]);
+      self.trigger('letter-clicked', l, $(this));
     });
     letter.appendTo(wrapper);
   });
@@ -124,8 +126,8 @@ function ColorPicker() {
 
 ColorPicker.prototype = Object.create(EventEmitter.prototype);
 
-ColorPicker.prototype.colorSelected = function (cell) {
-  this.trigger('on-color-selected', cell);
+ColorPicker.prototype.colorSelected = function (letter, color) {
+  this.trigger('on-color-selected', letter, color);
 };
 
 ColorPicker.prototype.onColorSelected = function (fn) {
@@ -140,7 +142,7 @@ ColorPicker.prototype.generate = function (letters) {
     c = colors[idx];
     l = l.toUpperCase();
     cell = $('<span class="color-picker-cell" style="background-color: rgb('+ c[0] + ',' + c[1] + ',' + c[2] + ');">' + l + '</span>');
-    cell.on('click', self.colorSelected.bind(this, l));
+    cell.on('click', self.colorSelected.bind(self, l, c));
     picker.append(cell);
   });
   return picker;
@@ -161,13 +163,47 @@ Game.prototype.start = function () {
   this.round.onTick(function (tick) {
     self.view.updateTime(tick);
   });
-  var text = new Text(this.texts[this.currentRound]);
-  var differentLetters = text.getDifferentLetters();
-  var picker = new ColorPicker().generate(differentLetters);
-  this.view.setText(text.render());
-  this.view.colors.append(picker);
+  this.selected = {};
+  this.text = new Text(this.texts[this.currentRound]);
+  var differentLetters = this.text.getDifferentLetters();
+  var picker = new ColorPicker();
+  this.view.colors.append(picker.generate(differentLetters));
+  picker.onColorSelected(this.colorSelected.bind(this));
+  this.text.onLetterClick(this.letterClicked.bind(this));
+  this.view.setText(this.text.render());
   this.round.start();
   this.currentRound += 1;
+};
+
+Game.prototype.colorSelected = function (l, color) {
+  this.currentLetter = l;
+  this.currentColor = color;
+};
+
+Game.prototype.lettersLeft = function (l) {
+  var c = this.selected[l] || 0,
+      t = this.text.text, count = 0;
+  for (var i = 0; i < t.length; i += 1) {
+    if (t[i].toUpperCase() === l) {
+      count += 1;
+    }
+  }
+  return c < count;
+};
+
+Game.prototype.letterClicked = function (l, elem) {
+  l = l.toUpperCase();
+  if (!this.lettersLeft(l)) {
+    alert('Избери друга буква. Вече си познал всички букви от този тип!');
+  }
+  if (l.toUpperCase() === this.currentLetter) {
+    var c = this.currentColor;
+    elem.css('background-color', 'rgb(' + c[0] + ', ' + c[1] + ', ' + c[2] + ')');
+    this.selected[l] = this.selected[l] || 0;
+    this.selected[l] += 1;
+  } else {
+    alert('Избрал си буквата ' + this.currentLetter);
+  }
 };
 
 var game = new Game();

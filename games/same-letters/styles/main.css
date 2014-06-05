@@ -4,6 +4,7 @@
 
 .word {
   font-size: 150%;
+  letter-spacing: 4px;
 }
 
 .color-picker {
