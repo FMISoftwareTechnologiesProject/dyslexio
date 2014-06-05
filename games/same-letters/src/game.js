@@ -68,6 +68,7 @@ Round.prototype.onTick = function (cb) {
 function GameView(container) {
   this.timer = container.find('.timer');
   this.text = container.find('.text');
+  this.colors = container.find('.colors');
 }
 
 GameView.prototype.updateTime = function (val) {
@@ -121,10 +122,14 @@ function ColorPicker() {
   EventEmitter.call(this);
 }
 
-ColorPicker.prototype.colorSelected = function () {
+ColorPicker.prototype = Object.create(EventEmitter.prototype);
+
+ColorPicker.prototype.colorSelected = function (cell) {
+  this.trigger('on-color-selected', cell);
 };
 
-ColorPicker.prototype.onColorSelected = function () {
+ColorPicker.prototype.onColorSelected = function (fn) {
+  this.addListener('on-color-selected', fn);
 };
 
 ColorPicker.prototype.generate = function (letters) {
@@ -133,8 +138,9 @@ ColorPicker.prototype.generate = function (letters) {
       c, cell, self = this;
   letters.forEach(function (l, idx) {
     c = colors[idx];
-    cell += $('<span class="color-picker-cell" style="background-color: rgb('+ c[0] + ',' + c[1] + ',' + c[2] + ');">' + l + '</span>');
-    cell.on('click', self.colorSelected);
+    l = l.toUpperCase();
+    cell = $('<span class="color-picker-cell" style="background-color: rgb('+ c[0] + ',' + c[1] + ',' + c[2] + ');">' + l + '</span>');
+    cell.on('click', self.colorSelected.bind(this, l));
     picker.append(cell);
   });
   return picker;
@@ -158,8 +164,8 @@ Game.prototype.start = function () {
   var text = new Text(this.texts[this.currentRound]);
   var differentLetters = text.getDifferentLetters();
   var picker = new ColorPicker().generate(differentLetters);
-  console.log(picker);
   this.view.setText(text.render());
+  this.view.colors.append(picker);
   this.round.start();
   this.currentRound += 1;
 };

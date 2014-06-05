@@ -5,3 +5,13 @@
 .word {
   font-size: 150%;
 }
+
+.color-picker {
+  font-size: 15px;
+}
+.color-picker-cell {
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+}
