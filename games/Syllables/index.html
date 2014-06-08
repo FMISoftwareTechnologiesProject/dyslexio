@@ -1,20 +1,32 @@
 <!doctype html>
-<html>
+<html >
   <head>
-    <script src="../../src/lib/jquery/jquery.js"></script>
-    <script src="../../src/lib/jquery-ui/ui/jquery-ui.js"></script>
+    <meta charset="utf-8"> 
     <style>
-      #draggable { width: 150px; height: 150px; padding: 0.5em; }
+      .draggable { font-size: 72px; padding: 15px;}
+      .droppable { display: inline-block; }
+      .drop-hover { background-color: green; z-index: -1;}
     </style>
-    <script>
-      $(function() {
-       $( "#draggable" ).draggable();
-      });
-    </script>
+<script>
+</script>
   </head>
   <body>
-    <div id="draggable" class="ui-widget-content">
-      <p>Drag me around</p>
-  </div>
+    <h1>Срички<br></h1>
+    <div>Съставете дума от дадените срички<br><br></div>
+	<div>Изберете ниво: <br><br>
+	   <input type="radio" name="level" value="1" onClick="chooseLevel(0)">Първо ниво<br>
+       <input type="radio" name="level" value="2" onClick="chooseLevel(1)">Второ ниво<br>
+       <input type="radio" name="level" value="3" onClick="chooseLevel(2)">Трето ниво<br><br><br><br>
+	</div>
+    <div id="syllablesHolder"></div>
+  <div id="helpDiv" style="display: none;"></div>
+    <div>
+      <input id="checkButton" type="button" value="Готово">
+      <input id="resetButton" type="button" value="Започни отначало">
+      <input id="newRoundButton" type="button" value="Нова дума">
+    </div>
+    <script src="../../src/lib/jquery/jquery.js"></script>
+    <script src="../../src/lib/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="game.js"></script>
   </body>
 </html>
