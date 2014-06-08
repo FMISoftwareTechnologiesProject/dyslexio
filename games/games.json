@@ -15,6 +15,9 @@
   {
     "id": "punctuation",
     "title": "Пунктуация",
-    "description": "Сложете пунктуационните знаци на правилните места"
+    "description": "Сложете пунктуационните знаци на правилните места",
+    "instructions": {
+      "m4a": "punctuationinstructions.m4a"
+    }
   }  
 ]
