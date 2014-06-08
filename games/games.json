@@ -7,10 +7,7 @@
   {
     "id": "same-letters",
     "title": "Еднакви букви",
-    "description": "Разпознайте еднаквите букви в текста",
-    "instructions": {
-      "m4a": "audio.m4a"
-    }
+    "description": "Разпознайте еднаквите букви в текста"
   },
   {
     "id": "punctuation",
