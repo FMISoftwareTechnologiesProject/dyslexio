@@ -22,6 +22,18 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
     return dls;
   };
 
+  DifficultyLevelManager.prototype.getDifficultyLevel = function (gameId) {
+    var self = INSTANCE;
+    return self.difficultyLevels[gameId];
+  };
+
+  DifficultyLevelManager.prototype.setDifficultyLevel = function (gameId, dl) {
+    var self = INSTANCE;
+    self.difficultyLevels[gameId] = new Dyslexio.Models.DifficultyLevel(dl);
+    console.log(INSTANCE.getDifficultyLevels());
+    localStorage.setItem('difficultyLevelManager', JSON.stringify(INSTANCE.getDifficultyLevels()));
+  };
+
   return {
     getInstance: function () {
       if (!INSTANCE) {
@@ -39,17 +51,14 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
       function (games) {
         INSTANCE = DifficultyLevelManager();
         var self = INSTANCE;
-
         $.each(games, function (idx) {
-          //self.games[games[idx].id] = new Dyslexio.Models.Game(games[idx]);
           self.difficultyLevels[games[idx].id] = new Dyslexio.Models.DifficultyLevel('3');
-          
         });
         console.log(self);
         return INSTANCE;
       })
       .fail(function () {
-        console.log('Prase error in games.json');
+        console.log('Parse error in games.json');
       });
     }
   };
