@@ -9,7 +9,8 @@ var correctSentences = ['Сложи запетая тук, и точка тук.
 function resetRound() {
   'use strict';
   $('#sentenceHolder').empty();
-//  $('#sentenceHolder').html(sentenceDiv);
+  var sentenceDivHtml = sentence.replace(/#/g, '<span class="droppable">&nbsp;</span>');
+  $('#sentenceHolder').html(sentenceDivHtml);
   $('.droppable').droppable({
     hoverClass: 'drop-hover',
     tolerance: 'touch',
@@ -66,6 +67,6 @@ $(function () {
   $('#checkButton').click(checkSolution);
   $('#resetButton').click(resetRound);
   $('#newRoundButton').click(startNewGame);
-  loadText();
+  startNewGame();
 });
 
