@@ -8,6 +8,9 @@ var countUsedWords = [];
 var countOfWords;
 var markUsed = [];
 var countLevels = 3;
+var currentLevel = 0;
+var correctSolutions = 0;
+var levelThreshold = 3;
 var indexOfWord;
 var level;
 
@@ -41,6 +44,7 @@ function init() {
 	  markUsed.push(1);
 	}
   }
+  chooseLevel(currentLevel);
 }
 
 function resetRound() {
@@ -112,9 +116,20 @@ function checkSolution() {
   var correct = $.inArray(spelledWord, words) > -1; 
   if (correct) {
     alert('Поздравления! Решихте правилно задачата');
-    startNewGame();
+    correctSolutions++;
+    if (correctSolutions >= levelThreshold) {
+      correctSolutions = 0;
+      currentLevel++;
+      if (currentLevel >= countLevels) {
+        currentLevel = countLevels - 1;
+      }
+      chooseLevel(currentLevel);
+    } else {
+      startNewGame();
+    }
   } else {
     alert('Имате грешки в решението. Опитайте отново');
+    correctSolutions = 0;
   }
 }
 
