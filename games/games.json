@@ -2,7 +2,10 @@
   {
     "id": "syllables",
     "title": "Срички",
-    "description": "Съставете дума от дадените срички"
+    "description": "Съставете дума от дадените срички",
+    "instructions": {
+      "m4a": "syllablesinstructions.m4a"
+    }
   },
   {
     "id": "same-letters",
