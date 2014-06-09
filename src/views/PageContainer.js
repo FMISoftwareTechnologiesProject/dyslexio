@@ -13,7 +13,7 @@ Dyslexio.Views.PageContainer = {
 
   pageCache: {},
 
-  player: $('#jp_container_1'),
+  player: $('#game-audio-instructions'),
 
   init: function () {
     var self = this;
@@ -64,36 +64,19 @@ Dyslexio.Views.PageContainer = {
 
   hideAudio: function () {
     this.player.hide();
-    $('#jquery_jplayer_1').hide();
-    $('#jquery_jplayer_1').jPlayer('destroy');
     $('.audio-icon').hide();
   },
 
   showAudio: function (game) {
-    var self = this;
     $('.audio-icon').show();
-    $('#jquery_jplayer_1').jPlayer({
-      ready: function () {
-        self.player.hide();
-        self.player.addClass('transparent');
-      },
-      ended: function () {
-        $('#jp_audio_0').removeAttr('src');
-        $('#jp_audio_0').attr('src', game.instructions.m4a);
-      },
-      swfPath: '/js',
-      volume: 1,
-      supplied: 'm4a, ogg',
-      cssSelectorAncestor: '#jp_container_1',
-      wmode: 'window',
-      keyEnabled: true
-    });
+    this.player.show();
     var instructions = {};
     for (var audio in game.instructions) {
       instructions[audio] =
         game.url + '/' + game.instructions[audio];
     }
-    $('#jquery_jplayer_1').jPlayer('setMedia', instructions);
+    this.player.attr('src',
+      instructions[Object.keys(instructions)[0]]);
   },
 
   loadGame: function (gameId) {
@@ -102,6 +85,7 @@ Dyslexio.Views.PageContainer = {
           .getGame(gameId),
         iframe = $('<iframe class="game-iframe" />'),
         self = this;
+    this.hidePlayer();
     this.startLoading();
     this.container.empty();
     this.container.append(iframe);
