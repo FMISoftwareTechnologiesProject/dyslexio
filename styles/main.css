@@ -202,7 +202,7 @@ a.jp-stop {
   height: 30px !important;
 }
 
-.spinner, #jp_container_1 {
+.spinner, #game-audio-instructions {
   -moz-transition: 0.3s opacity;
   -ms-transition: 0.3s opacity;
   -webkit-transition: 0.3s opacity;
