@@ -65,6 +65,7 @@ Dyslexio.Views.PageContainer = {
   hideAudio: function () {
     this.player.hide();
     $('#jquery_jplayer_1').hide();
+    $('#jquery_jplayer_1').jPlayer('destroy');
     $('.audio-icon').hide();
   },
 
@@ -73,11 +74,6 @@ Dyslexio.Views.PageContainer = {
     $('.audio-icon').show();
     $('#jquery_jplayer_1').jPlayer({
       ready: function () {
-        for (var audio in game.instructions) {
-          game.instructions[audio] =
-            game.url + '/' + game.instructions[audio];
-        }
-        $(this).jPlayer('setMedia', game.instructions);
         self.player.hide();
         self.player.addClass('transparent');
       },
@@ -92,6 +88,12 @@ Dyslexio.Views.PageContainer = {
       wmode: 'window',
       keyEnabled: true
     });
+    var instructions = {};
+    for (var audio in game.instructions) {
+      instructions[audio] =
+        game.url + '/' + game.instructions[audio];
+    }
+    $('#jquery_jplayer_1').jPlayer('setMedia', instructions);
   },
 
   loadGame: function (gameId) {
