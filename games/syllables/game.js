@@ -83,6 +83,7 @@ function getWordIndex(level) {
 function chooseLevel(choosedLevel) {
   'use strict';
   level = choosedLevel;
+  Dyslexio.setLevel(level);
   indexOfWord = getWordIndex(level);
   startNewRound();
 }

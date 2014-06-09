@@ -11,7 +11,7 @@ Dyslexio.Models.Game = function (game) {
 };
 
 Dyslexio.Models.Game.prototype.setLevel = function (level) {
-  DifficultyLevelManager.getInstance()
-    .setDifficultyLevel(new DifficultyLevel(level));
+  Dyslexio.Models.DifficultyLevelManager.getInstance()
+    .setDifficultyLevel(new Dyslexio.Models.DifficultyLevel(level));
 };
 
