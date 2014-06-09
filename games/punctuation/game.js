@@ -50,7 +50,6 @@ function resetRound() {
   });
 }
 
-
 function startNewRound() {
   'use strict';
   text = textsArray[indexOfText].replace(/\./g,
@@ -70,11 +69,10 @@ function startNewRound() {
   resetRound();
 }
 
-
-
 function chooseLevel(choosedLevel) {
   'use strict';
   level = choosedLevel;
+  Dyslexio.setLevel(level);
   indexOfText = getTextIndex(level);
   startNewRound();
 }
