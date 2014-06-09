@@ -1,5 +1,5 @@
 var fileName = 'texts.txt';
-var punctSymbols = [',', '.', '?',';','!'];
+var punctSymbols = [',', '.', '?', ';', '!'];
 var text;
 var textsArray;
 var usedTexts = [];
@@ -13,27 +13,34 @@ var levelThreshold = 3;
 var indexOfText;
 var level;
 
-function init() {
+function randomNumber(min, max) {
   'use strict';
-  var jsonData = JSON.parse($('#helpDiv').text());
-  textsArray = jsonData.texts;
-  countOfTexts = jsonData.countOfTextsForEachLevel;
-  var length = countOfTexts * countLevels;
-  while (length--) {
-	usedTexts.push(0);
-	if (length < countLevels) {
-	  countUsedTexts.push(0);
-	  markUsed.push(1);
-	}
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function getTextIndex(level) {
+  'use strict';
+  if (countUsedTexts[level] === countOfTexts) {
+    countUsedTexts[level] = 0;
+    markUsed[level] += 1;
   }
-  chooseLevel(currentLevel);
+  var index;
+  while (true) {
+    index = randomNumber(level  * countOfTexts, (level + 1) * countOfTexts - 1);
+    if (usedTexts[index] !== markUsed[level]) {
+      usedTexts[index] = markUsed[level];
+      countUsedTexts[level] += 1;
+      break;
+    }
+  }
+  return index;
 }
 
 function resetRound() {
   'use strict';
   $('#sentenceHolder').empty();
   $('#sentenceHolder').html(text);
-  
+
   $('.droppable').droppable({
     hoverClass: 'drop-hover',
     tolerance: 'touch',
@@ -43,13 +50,15 @@ function resetRound() {
   });
 }
 
+
 function startNewRound() {
   'use strict';
-  text = textsArray[indexOfText].replace(/\./g, '<span class="droppable">&nbsp;</span>')
+  text = textsArray[indexOfText].replace(/\./g,
+          '<span class="droppable">&nbsp;</span>')
          .replace(/,/g, '<span class="droppable">&nbsp;</span>')
          .replace(/\?/g, '<span class="droppable">&nbsp;</span>')
-		 .replace(/\!/g, '<span class="droppable">&nbsp;</span>')
-		 .replace(/\;/g, '<span class="droppable">&nbsp;</span>');
+         .replace(/\!/g, '<span class="droppable">&nbsp;</span>')
+         .replace(/\;/g, '<span class="droppable">&nbsp;</span>');
   $('#punctuationHolder').empty();
   var len = punctSymbols.length + level - 2;
   for (var i = 0; i < len; i += 1) {
@@ -61,6 +70,8 @@ function startNewRound() {
   resetRound();
 }
 
+
+
 function chooseLevel(choosedLevel) {
   'use strict';
   level = choosedLevel;
@@ -68,26 +79,21 @@ function chooseLevel(choosedLevel) {
   startNewRound();
 }
 
-function getTextIndex(level) {
+function init() {
   'use strict';
-  if (countUsedTexts[level] == countOfTexts) {
-	countUsedTexts[level] = 0;
-	markUsed[level] +=1;	
+  var jsonData = JSON.parse($('#helpDiv').text());
+  textsArray = jsonData.texts;
+  countOfTexts = jsonData.countOfTextsForEachLevel;
+  var length = countOfTexts * countLevels;
+  while (length) {
+    length -= 1;
+    usedTexts.push(0);
+    if (length < countLevels) {
+      countUsedTexts.push(0);
+      markUsed.push(1);
+    }
   }
-  var index;
-  while (true) {
-	index = randomNumber(level  * countOfTexts, (level + 1) * countOfTexts - 1);
-	if (usedTexts[index] != markUsed[level]) {
-	  usedTexts[index] = markUsed[level];
-	  countUsedTexts[level] +=1;
-	  break;
-	}
-  }
-  return index;
-}
-
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  chooseLevel(currentLevel);
 }
 
 function startNewGame() {
@@ -99,14 +105,14 @@ function startNewGame() {
 function checkSolution() {
   'use strict';
   var correct = $('#sentenceHolder').text()
-	  .replace(/\u00a0/g,' ')
-	  .trim() === textsArray[indexOfText]; 
+      .replace(/\u00a0/g, ' ')
+      .trim() === textsArray[indexOfText];
   if (correct) {
     alert('Поздравления! Решихте правилно задачата');
-    correctSolutions++;
+    correctSolutions += 1;
     if (correctSolutions >= levelThreshold) {
       correctSolutions = 0;
-      currentLevel++;
+      currentLevel += 1;
       if (currentLevel >= countLevels) {
         currentLevel = countLevels - 1;
       }

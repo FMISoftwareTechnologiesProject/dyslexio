@@ -97,11 +97,11 @@ function init() {
   var length = countOfWords * countLevels;
   while (length) {
     usedWords.push(0);
+    length -= 1;
     if (length < countLevels) {
       countUsedWords.push(0);
       markUsed.push(1);
     }
-    length -= 1;
   }
   chooseLevel(currentLevel);
 }
