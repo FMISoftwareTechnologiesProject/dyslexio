@@ -9,3 +9,9 @@ Dyslexio.Models.Game = function (game) {
   this.instructions = game.instructions;
   this.url = Dyslexio.CONFIG.GAMES_BASE + '/' + this.id;
 };
+
+Dyslexio.Models.Game.prototype.setLevel = function (level) {
+  DifficultyLevelManager.getInstance()
+    .setDifficultyLevel(new DifficultyLevel(level));
+};
+

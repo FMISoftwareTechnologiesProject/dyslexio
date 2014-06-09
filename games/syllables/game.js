@@ -14,37 +14,24 @@ var levelThreshold = 3;
 var indexOfWord;
 var level;
 
+function randomNumber(min, max) {
+  'use strict';
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function shuffle(array) {
+  'use strict';
   var counter = array.length, temp, index;
 
   while (counter > 0) {
     index = Math.floor(Math.random() * counter);
-
-    counter--;
-
+    counter -= 1;
     temp = array[counter];
     array[counter] = array[index];
     array[index] = temp;
   }
 
   return array;
-}
-
-function init() {
-  'use strict';
-  var jsonData = JSON.parse($('#helpDiv').text());
-  wordsArray = jsonData.words;
-  countOfWords = jsonData.countOfWordsForEachLevel;
-  syllablesArray = jsonData.syllables;
-  var length = countOfWords * countLevels;
-  while (length--) {
-	usedWords.push(0);
-	if (length < countLevels) {
-	  countUsedWords.push(0);
-	  markUsed.push(1);
-	}
-  }
-  chooseLevel(currentLevel);
 }
 
 function resetRound() {
@@ -57,7 +44,7 @@ function resetRound() {
       .appendTo('#syllablesHolder');
   }
   $('.draggable').draggable({revert: true, revertDuration: 0});
-  
+
   $('.droppable').droppable({
     hoverClass: 'drop-hover',
     drop: function (event, ui) {
@@ -75,6 +62,24 @@ function startNewRound() {
   resetRound();
 }
 
+function getWordIndex(level) {
+  'use strict';
+  if (countUsedWords[level] === countOfWords) {
+    countUsedWords[level] = 0;
+    markUsed[level] += 1;
+  }
+  var index;
+  while (true) {
+    index = randomNumber(level  * countOfWords, (level + 1) * countOfWords - 1);
+    if (usedWords[index] !== markUsed[level]) {
+      usedWords[index] = markUsed[level];
+      countUsedWords[level] += 1;
+      break;
+    }
+  }
+  return index;
+}
+
 function chooseLevel(choosedLevel) {
   'use strict';
   level = choosedLevel;
@@ -82,26 +87,22 @@ function chooseLevel(choosedLevel) {
   startNewRound();
 }
 
-function getWordIndex(level) {
+function init() {
   'use strict';
-  if (countUsedWords[level] == countOfWords) {
-	countUsedWords[level] = 0;
-	markUsed[level] +=1;	
+  var jsonData = JSON.parse($('#helpDiv').text());
+  wordsArray = jsonData.words;
+  countOfWords = jsonData.countOfWordsForEachLevel;
+  syllablesArray = jsonData.syllables;
+  var length = countOfWords * countLevels;
+  while (length) {
+    usedWords.push(0);
+    if (length < countLevels) {
+      countUsedWords.push(0);
+      markUsed.push(1);
+    }
+    length -= 1;
   }
-  var index;
-  while (true) {
-	index = randomNumber(level  * countOfWords, (level + 1) * countOfWords - 1);
-	if (usedWords[index] != markUsed[level]) {
-	  usedWords[index] = markUsed[level];
-	  countUsedWords[level] +=1;
-	  break;
-	}
-  }
-  return index;
-}
-
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  chooseLevel(currentLevel);
 }
 
 function startNewGame() {
@@ -113,13 +114,13 @@ function startNewGame() {
 function checkSolution() {
   'use strict';
   var spelledWord = $('#syllablesHolder').text();
-  var correct = $.inArray(spelledWord, words) > -1; 
+  var correct = $.inArray(spelledWord, words) > -1;
   if (correct) {
     alert('Поздравления! Решихте правилно задачата');
-    correctSolutions++;
+    correctSolutions += 1;
     if (correctSolutions >= levelThreshold) {
       correctSolutions = 0;
-      currentLevel++;
+      currentLevel += 1;
       if (currentLevel >= countLevels) {
         currentLevel = countLevels - 1;
       }

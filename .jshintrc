@@ -36,6 +36,9 @@
     "document": true,
     "crossroads": true,
     "hasher": true,
-    "alert": true
+    "alert": true,
+    "EventEmitter": true,
+    "DifficultyLevelManager": true,
+    "DifficultyLevel": true
   }
 }

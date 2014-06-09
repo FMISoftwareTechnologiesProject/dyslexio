@@ -26,6 +26,6 @@
     "hasher": "~1.2.0",
     "jplayer": "~2.6.1",
     "js-signals": "~1.0.0",
-    "bootstrap": "~3.1.1"
+    "EventEmitter": "~1.0.1"
   }
 }
