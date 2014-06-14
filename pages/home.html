@@ -11,13 +11,8 @@
 <script>
 $(function () {
   var games = Dyslexio.Models.GameFactory.getInstance().getGames();
-  var difficultyLevelManager = Dyslexio.Models.DifficultyLevelManager.getInstance().getDifficultyLevels();
 
-  if (typeof localStorage.getItem("difficultyLevelManager") === 'undefined') {
-    localStorage.setItem("difficultyLevelManager", JSON.stringify(difficultyLevelManager));
-  }
-
-  if (typeof localStorage.getItem("hideFlag") === 'undefined') {
+  if (localStorage.getItem("hideFlag") === null) {
     localStorage.setItem("hideFlag", "show");
   }
 
