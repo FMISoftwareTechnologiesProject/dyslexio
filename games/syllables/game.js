@@ -9,8 +9,6 @@ var countOfWords;
 var markUsed = [];
 var countLevels = 3;
 var currentLevel = 0;
-var correctSolutions = 0;
-var levelThreshold = 3;
 var indexOfWord;
 var level;
 
@@ -82,8 +80,7 @@ function getWordIndex(level) {
 
 function chooseLevel(choosedLevel) {
   'use strict';
-  level = choosedLevel;
-  Dyslexio.setLevel(level);
+  level = Dyslexio.getLevel('syllables');
   indexOfWord = getWordIndex(level);
   startNewRound();
 }
@@ -118,20 +115,12 @@ function checkSolution() {
   var correct = $.inArray(spelledWord, words) > -1;
   if (correct) {
     alert('Поздравления! Решихте правилно задачата');
-    correctSolutions += 1;
-    if (correctSolutions >= levelThreshold) {
-      correctSolutions = 0;
-      currentLevel += 1;
-      if (currentLevel >= countLevels) {
-        currentLevel = countLevels - 1;
-      }
-      chooseLevel(currentLevel);
-    } else {
-      startNewGame();
-    }
+    Dyslexio.correctSolution('syllables');
+    currentLevel = Dyslexio.getLevel('syllables');
+    chooseLevel(currentLevel);
   } else {
     alert('Имате грешки в решението. Опитайте отново');
-    correctSolutions = 0;
+    Dyslexio.incorrectSolution('syllables');
   }
 }
 

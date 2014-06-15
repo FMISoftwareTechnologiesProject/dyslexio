@@ -94,6 +94,16 @@ Dyslexio.Views.PageContainer = {
       iframe[0].contentWindow.Dyslexio = {
         setLevel: function (level) {
           game.setLevel(level);
+          console.log(gameId);
+        },
+        getLevel: function (gameId) {
+          return game.getLevel(gameId);
+        },
+        correctSolution: function(gameId) {
+          game.correctSolution(gameId);
+        },
+        incorrectSolution: function(gameId) {
+          game.incorrectSolution(gameId);
         }
       };
       self.endLoading();

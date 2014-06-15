@@ -75,7 +75,7 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
       this.decrementLevel(gameId);
       mistakes = 0;
     }
-    console.log(mistakes);
+    console.log('Current mistakes: ' + mistakes);
     this.setMistakes(gameId, mistakes);
   };
 
@@ -104,7 +104,6 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
           });
           localStorage.setItem("difficultyLevelManager", JSON.stringify(self.getDifficultyLevels()));
         } else {
-          //console.log('else');
           var retrievedObj = localStorage.getItem('difficultyLevelManager');
           console.log(retrievedObj);
           var jsonRetrievedObj = JSON.parse(retrievedObj);

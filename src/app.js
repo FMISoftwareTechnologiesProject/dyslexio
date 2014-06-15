@@ -17,7 +17,6 @@
 
   Dyslexio.Models.DifficultyLevelManager.init()
   .done(function (data) {
-    //Dyslexio.Models.DifficultyLevelManager.getInstance().getDifficultyLevels();
     console.log('DLM Initialized', data);
   });
 
