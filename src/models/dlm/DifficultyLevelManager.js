@@ -15,48 +15,77 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
   }
 
   DifficultyLevelManager.prototype.getDifficultyLevels = function () {
-    var dls = [];
-    for (var difficultyLevel in this.difficultyLevels) {
-      dls.push(this.difficultyLevels[difficultyLevel]);
-    }
-    return dls;
+    return this.difficultyLevels;
   };
 
   DifficultyLevelManager.prototype.getDifficultyLevel = function (gameId) {
-    var self = INSTANCE;
-    return self.difficultyLevels[gameId];
+    return this.difficultyLevels[gameId].getLevel();
+  };
+
+  DifficultyLevelManager.prototype.getMistakes = function (gameId) {
+    return this.difficultyLevels[gameId].getMistakes();
   };
 
   DifficultyLevelManager.prototype.setDifficultyLevel = function (gameId, dl) {
-    var self = INSTANCE;
+    var self = this;
     self.difficultyLevels[gameId] = dl;
-    console.log(INSTANCE.getDifficultyLevels());
-    localStorage.setItem('difficultyLevelManager', JSON.stringify(INSTANCE.getDifficultyLevels()));
+    console.log(this.getDifficultyLevels());
+    localStorage.setItem('difficultyLevelManager', JSON.stringify(this.getDifficultyLevels()));
   };
 
   DifficultyLevelManager.prototype.incrementLevel = function (gameId) {
-    var self = INSTANCE;
-    if (self.difficultyLevels[gameId] < 2) {
-      self.difficultyLevels[gameId]++;
+    var level = this.difficultyLevels[gameId].getLevel();
+    console.log('LEVEL:' + level);
+    if (level < 2) {
+      console.log("LEVEL INCREMENT");
+      level++;
+      this.difficultyLevels[gameId].setLevel(level);
     }
-    console.log(INSTANCE.getDifficultyLevels());
-    localStorage.setItem('difficultyLevelManager', JSON.stringify(INSTANCE.getDifficultyLevels()));
+    console.log(this.getDifficultyLevels());
+    localStorage.setItem('difficultyLevelManager', JSON.stringify(this.getDifficultyLevels()));
   };
 
   DifficultyLevelManager.prototype.decrementLevel = function (gameId) {
-    var self = INSTANCE;
-    if (self.difficultyLevels[gameId] > 0) {
-      self.difficultyLevels[gameId]--;
+    var level = this.difficultyLevels[gameId].getLevel();
+    console.log('LEVEL:' + level);
+    if (level > 0) {
+      console.log("LEVEL DECREMENT");
+      level--;
+      this.difficultyLevels[gameId].setLevel(level);
     }
-    console.log(INSTANCE.getDifficultyLevels());
-    localStorage.setItem('difficultyLevelManager', JSON.stringify(INSTANCE.getDifficultyLevels()));
+    console.log(this.getDifficultyLevels());
+    localStorage.setItem('difficultyLevelManager', JSON.stringify(this.getDifficultyLevels()));
   };
+
+  DifficultyLevelManager.prototype.setMistakes = function (gameId, mistakes) {
+    this.difficultyLevels[gameId].setMistakes(mistakes);
+    localStorage.setItem('difficultyLevelManager', JSON.stringify(this.getDifficultyLevels()));
+  };
+
+
+  DifficultyLevelManager.prototype.correctSolution = function (gameId) {
+    console.log(gameId);
+    this.incrementLevel(gameId);
+  };
+
+  DifficultyLevelManager.prototype.incorrectSolution = function (gameId) {
+    var mistakes = this.getMistakes(gameId);
+    mistakes++;
+    if (mistakes > 2) {
+      this.decrementLevel(gameId);
+      mistakes = 0;
+    }
+    console.log('Current mistakes: ' + mistakes);
+    this.setMistakes(gameId, mistakes);
+  };
+
 
   return {
     getInstance: function () {
       if (!INSTANCE) {
         throw new Error('The DLM should be initialized');
       }
+
       return INSTANCE;
     },
     init: function () {
@@ -69,9 +98,22 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
       function (games) {
         INSTANCE = DifficultyLevelManager();
         var self = INSTANCE;
-        $.each(games, function (idx) {
-          self.difficultyLevels[games[idx].id] = 1;
-        });
+        if (localStorage.getItem("difficultyLevelManager") === null) {
+          $.each(games, function (idx) {
+            self.difficultyLevels[games[idx].id] = new Dyslexio.Models.DifficultyLevel(1, 0);
+          });
+          localStorage.setItem("difficultyLevelManager", JSON.stringify(self.getDifficultyLevels()));
+        } else {
+          var retrievedObj = localStorage.getItem('difficultyLevelManager');
+          console.log(retrievedObj);
+          var jsonRetrievedObj = JSON.parse(retrievedObj);
+          console.log(jsonRetrievedObj);
+          $.each(jsonRetrievedObj, function (i, item) {
+            self.difficultyLevels[i] = new Dyslexio.Models.DifficultyLevel(jsonRetrievedObj[i].level, jsonRetrievedObj[i].mistakes);
+          });
+
+        }
+        
         console.log(self);
         return INSTANCE;
       })
