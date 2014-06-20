@@ -1,15 +1,13 @@
 function Game() {
-  this.texts = ['Some long sentance blqlqlq foo and bar'];
+  this.texts = ['Some long'];
   this.currentRound = 0;
+  this.marked = 0;
 }
 
 Game.prototype.start = function () {
   var self = this;
   this.round = new Round();
   this.view = new GameView($('#container'));
-  this.round.onTick(function (tick) {
-    self.view.updateTime(tick);
-  });
   this.selected = {};
   this.text = new Text(this.texts[this.currentRound]);
   var differentLetters = this.text.getDifferentLetters();
@@ -46,8 +44,12 @@ Game.prototype.letterClicked = function (l, elem) {
   if (l.toUpperCase() === this.currentLetter) {
     var c = this.currentColor;
     elem.css('background-color', c);
+    this.marked += 1;
     this.selected[l] = this.selected[l] || 0;
     this.selected[l] += 1;
+    if (this.marked === this.text.text.replace(/\s/g, '').length) {
+      alert('Поздравления! Вие маркирахте всички букви успешно!');
+    }
   } else {
     alert('Избрал си буквата ' + this.currentLetter);
   }
