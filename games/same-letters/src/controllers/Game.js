@@ -1,15 +1,23 @@
 function Game() {
-  this.texts = ['Some long'];
+  this.texts = {};
+  this.texts[LEVELS.BEGINNER] = [];
+  this.texts[LEVELS.NOVICE] = ['След войната за кратко е част от Фрайкорпс, а при сформирането на Райхсвера', 'В началото на 1939 г. е възпроизведен в звание генерал-майор и командир на дивизия', 'Заедно с дивизията участва в битката за Франция, като част от танкова група Клайст'];
+  this.texts[LEVELS.MASTER] = [''];
+  this.currentLevel = LEVELS.BEGINNER;
   this.currentRound = 0;
   this.marked = 0;
 }
+
+Game.prototype.setLevel = function (lvl) {
+  this.currentLevel = lvl;
+};
 
 Game.prototype.start = function () {
   var self = this;
   this.round = new Round();
   this.view = new GameView($('#container'));
   this.selected = {};
-  this.text = new Text(this.texts[this.currentRound]);
+  this.text = new Text(this.texts[this.currentLevel][this.currentRound]);
   var differentLetters = this.text.getDifferentLetters();
   var picker = new ColorPicker();
   this.view.colors.append(picker.generate(differentLetters));
@@ -17,7 +25,11 @@ Game.prototype.start = function () {
   this.text.onLetterClick(this.letterClicked.bind(this));
   this.view.setText(this.text.render());
   this.round.start();
-  this.currentRound += 1;
+  if (this.currentRound >= this.texts[this.currentLevel].length) {
+    this.currentRound = 0;
+  } else {
+    this.currentRound += 1;
+  }
 };
 
 Game.prototype.colorSelected = function (l, color) {

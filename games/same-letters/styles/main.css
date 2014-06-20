@@ -7,6 +7,12 @@
   border: 1px solid white;
 }
 
+.word-letter-disabled:hover,
+.word-letter-disabled {
+  border: none;
+  cursor: default;
+}
+
 .word {
   font-size: 200%;
   letter-spacing: 4px;

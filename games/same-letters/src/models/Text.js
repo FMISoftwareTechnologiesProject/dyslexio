@@ -10,10 +10,14 @@ Text.prototype.render = function (container) {
       self = this,
       letter;
   this.text.split('').forEach(function (l) {
-    letter = $('<span class="word-letter">' + l + '</span>');
-    letter.click(function () {
-      self.trigger('letter-clicked', l, $(this));
-    });
+    if (l === ' ') {
+      letter = $('<span class="word-letter word-letter-disabled">' + l + '</span>');
+    } else {
+      letter = $('<span class="word-letter">' + l + '</span>');
+      letter.click(function () {
+        self.trigger('letter-clicked', l, $(this));
+      });
+    }
     letter.appendTo(wrapper);
   });
   return wrapper;
