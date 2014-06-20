@@ -1,5 +1,10 @@
+.word-letter:hover {
+  border: 1px solid black;
+}
+
 .word-letter {
   cursor: pointer;
+  border: 1px solid white;
 }
 
 .word {

@@ -14,5 +14,10 @@
     "instructions": {
       "m4a": "punctuationinstructions.m4a"
     }
-  }  
+  },
+  {
+    "id": "same-letters",
+    "title": "Еднакви букви",
+    "description": ""
+  }
 ]

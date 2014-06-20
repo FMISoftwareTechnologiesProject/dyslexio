@@ -45,7 +45,7 @@ Game.prototype.letterClicked = function (l, elem) {
   }
   if (l.toUpperCase() === this.currentLetter) {
     var c = this.currentColor;
-    elem.css('background-color', 'rgb(' + c[0] + ', ' + c[1] + ', ' + c[2] + ')');
+    elem.css('background-color', c);
     this.selected[l] = this.selected[l] || 0;
     this.selected[l] += 1;
   } else {
