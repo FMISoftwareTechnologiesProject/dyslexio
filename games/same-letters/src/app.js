@@ -1,3 +1,3 @@
 var game = new Game();
-game.setLevel(LEVELS.NOVICE);
+game.setLevel(LEVELS.BEGINNER);
 game.start();

@@ -1,11 +1,10 @@
 function Game() {
   this.texts = {};
-  this.texts[LEVELS.BEGINNER] = [];
+  this.texts[LEVELS.BEGINNER] = ['A', 'B'];
   this.texts[LEVELS.NOVICE] = ['След войната за кратко е част от Фрайкорпс, а при сформирането на Райхсвера', 'В началото на 1939 г. е възпроизведен в звание генерал-майор и командир на дивизия', 'Заедно с дивизията участва в битката за Франция, като част от танкова група Клайст'];
   this.texts[LEVELS.MASTER] = [''];
   this.currentLevel = LEVELS.BEGINNER;
   this.currentRound = 0;
-  this.marked = 0;
 }
 
 Game.prototype.setLevel = function (lvl) {
@@ -13,6 +12,9 @@ Game.prototype.setLevel = function (lvl) {
 };
 
 Game.prototype.start = function () {
+  if (this.currentRound >= this.texts[this.currentLevel].length) {
+    this.currentRound = 0;
+  }
   var self = this;
   this.round = new Round();
   this.view = new GameView($('#container'));
@@ -20,16 +22,14 @@ Game.prototype.start = function () {
   this.text = new Text(this.texts[this.currentLevel][this.currentRound]);
   var differentLetters = this.text.getDifferentLetters();
   var picker = new ColorPicker();
+  this.view.colors.empty();
   this.view.colors.append(picker.generate(differentLetters));
   picker.onColorSelected(this.colorSelected.bind(this));
   this.text.onLetterClick(this.letterClicked.bind(this));
   this.view.setText(this.text.render());
   this.round.start();
-  if (this.currentRound >= this.texts[this.currentLevel].length) {
-    this.currentRound = 0;
-  } else {
-    this.currentRound += 1;
-  }
+  this.marked = 0;
+  this.currentRound += 1;
 };
 
 Game.prototype.colorSelected = function (l, color) {
@@ -61,6 +61,7 @@ Game.prototype.letterClicked = function (l, elem) {
     this.selected[l] += 1;
     if (this.marked === this.text.text.replace(/\s/g, '').length) {
       alert('Поздравления! Вие маркирахте всички букви успешно!');
+      this.start();
     }
   } else {
     alert('Избрал си буквата ' + this.currentLetter);
