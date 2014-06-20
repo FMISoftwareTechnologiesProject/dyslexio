@@ -1,3 +1,8 @@
 var game = new Game();
-game.setLevel(LEVELS.BEGINNER);
-game.start();
+$('#container').hide();
+$('[name="level"]').change(function (e) {
+  game.setLevel(LEVELS[e.currentTarget.value]);
+  game.start();
+  $('#container').show();
+  $('#level-dialog').hide();
+});
