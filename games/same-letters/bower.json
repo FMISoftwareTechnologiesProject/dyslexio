@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "jquery": "~2.1.0",
-    "EventEmitter": "~1.0.1"
+    "EventEmitter": "~1.0.1",
+    "randomcolors": "git@github.com:davidmerfield/randomColor.git"
   }
 }
