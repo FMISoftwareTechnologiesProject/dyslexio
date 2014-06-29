@@ -55,7 +55,7 @@
 }
 
 .sidebar-nav li a:hover {
-  color: #ccc;
+  color: #000000;
   background: rgba(255,255,255,0.2);
   text-decoration: none;
 }
