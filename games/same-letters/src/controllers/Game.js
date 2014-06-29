@@ -16,7 +16,6 @@ Game.prototype.start = function () {
     this.currentRound = 0;
   }
   var self = this;
-  this.round = new Round();
   this.view = new GameView($('#container'));
   this.selected = {};
   this.text = new Text(this.texts[this.currentLevel][this.currentRound]);
@@ -27,7 +26,6 @@ Game.prototype.start = function () {
   picker.onColorSelected(this.colorSelected.bind(this));
   this.text.onLetterClick(this.letterClicked.bind(this));
   this.view.setText(this.text.render());
-  this.round.start();
   this.marked = 0;
   this.currentRound += 1;
 };
