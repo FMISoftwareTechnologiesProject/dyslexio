@@ -3,9 +3,10 @@
 var Dyslexio = Dyslexio || {};
 Dyslexio.Models = Dyslexio.Models || {};
 
-Dyslexio.Models.DifficultyLevel = function (level, mistakes) {
+Dyslexio.Models.DifficultyLevel = function (level, mistakes, currentWins) {
   this.level = level;
   this.mistakes = mistakes;
+  this.currentWins = currentWins;
 };
 
 Dyslexio.Models.DifficultyLevel.prototype.getLevel = function () {
@@ -24,3 +25,10 @@ Dyslexio.Models.DifficultyLevel.prototype.setMistakes = function (mistakes) {
 	 return this.mistakes = mistakes;
 };
 
+Dyslexio.Models.DifficultyLevel.prototype.getCurrentWins = function () {
+	 return this.currentWins;
+};
+
+Dyslexio.Models.DifficultyLevel.prototype.setCurrentWins = function (currentWins) {
+	 return this.currentWins = currentWins;
+};

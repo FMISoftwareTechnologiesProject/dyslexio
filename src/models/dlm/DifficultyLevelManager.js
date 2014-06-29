@@ -35,11 +35,20 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
 
   DifficultyLevelManager.prototype.incrementLevel = function (gameId) {
     var level = this.difficultyLevels[gameId].getLevel();
+    var currentWins = this.difficultyLevels[gameId].getCurrentWins();
+    console.log("CURRENT WINS" + currentWins);
+    currentWins++;
+    console.log("INCREMENTING CURRENT WINS" + currentWins);
+    this.difficultyLevels[gameId].setCurrentWins(currentWins);
     console.log('LEVEL:' + level);
-    if (level < 2) {
-      console.log("LEVEL INCREMENT");
-      level++;
-      this.difficultyLevels[gameId].setLevel(level);
+    console.log("CURRENT WINS" + this.difficultyLevels[gameId].getCurrentWins());
+    if (currentWins == 3) {
+      this.difficultyLevels[gameId].setCurrentWins(0);
+      if (level < 2) {
+        console.log("LEVEL INCREMENT");
+        level++;
+        this.difficultyLevels[gameId].setLevel(level);
+      }
     }
     console.log(this.getDifficultyLevels());
     localStorage.setItem('difficultyLevelManager', JSON.stringify(this.getDifficultyLevels()));
@@ -100,7 +109,7 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
         var self = INSTANCE;
         if (localStorage.getItem("difficultyLevelManager") === null) {
           $.each(games, function (idx) {
-            self.difficultyLevels[games[idx].id] = new Dyslexio.Models.DifficultyLevel(1, 0);
+            self.difficultyLevels[games[idx].id] = new Dyslexio.Models.DifficultyLevel(1, 0, 0);
           });
           localStorage.setItem("difficultyLevelManager", JSON.stringify(self.getDifficultyLevels()));
         } else {
@@ -109,7 +118,7 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
           var jsonRetrievedObj = JSON.parse(retrievedObj);
           console.log(jsonRetrievedObj);
           $.each(jsonRetrievedObj, function (i, item) {
-            self.difficultyLevels[i] = new Dyslexio.Models.DifficultyLevel(jsonRetrievedObj[i].level, jsonRetrievedObj[i].mistakes);
+            self.difficultyLevels[i] = new Dyslexio.Models.DifficultyLevel(jsonRetrievedObj[i].level, jsonRetrievedObj[i].mistakes, jsonRetrievedObj[i].currentWins);
           });
 
         }
