@@ -18,7 +18,7 @@
   {
     "id": "same-letters",
     "title": "Еднакви символи",
-    "description": "",
+    "description": "Изберете ниво, след което изберете символ и маркирайте всички негови повторения",
     "instructions": {
       "ogg": "same-letters.ogg"
     }
