@@ -1,6 +1,7 @@
 <!doctype html>
 <html >
   <head>
+    <link rel="stylesheet" href="../../src/lib/bootstrap/dist/css/bootstrap.css">
     <meta charset="utf-8"> 
     <style>
       .draggable { font-size: 72px; }
@@ -11,16 +12,30 @@
 </script>
   </head>
   <body>
-    <h1>Пунктуация<br></h1>
-    <div>Сложете пунктуационните знаци на правилните места<br><br></div>
-    <div id="sentenceHolder"></div>
-    <div id="punctuationHolder"></div>
-  <div id="helpDiv" style="display: none;"></div>
-    <div>
-      <input id="checkButton" type="button" value="Готово">
-      <input id="resetButton" type="button" value="Започни отначало">
-      <input id="newRoundButton" type="button" value="Ново изречение">
-    </div>
+  <table width="500px" height="300px" style="margin-left: 100px;">
+      <tr>
+        <td align="center">
+          <h1>Пунктуация<br><br></h1>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <div class="alert alert-info"><b>Сложете пунктуационните знаци на правилните места.</b></div>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <div id="sentenceHolder"></div>
+          <div id="punctuationHolder"></div>
+          <div id="helpDiv" style="display: none;"></div>
+          <div>
+            <input id="checkButton" type="button" value="Готово">
+            <input id="resetButton" type="button" value="Започни отначало">
+            <input id="newRoundButton" type="button" value="Ново изречение">
+           </div>
+        </td>
+      </tr>
+    </table>
     <script src="../../src/lib/jquery/jquery.js"></script>
     <script src="../../src/lib/jquery-ui/ui/jquery-ui.js"></script>
     <script src="game.js"></script>

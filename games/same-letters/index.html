@@ -3,25 +3,38 @@
 <head>
   <title></title>
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="../../src/lib/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
-  <h1>Еднакви символи</h1>
-  <p>
-    Изберете ниво, след което изберете символ и маркирайте всички негови повторения
-  </p>
-  <section id="level-dialog">
-    Изберете ниво на трудност:<br><br>
-    <label><input type="radio" name="level" value="BEGINNER">Лесно</label><br>
-    <label><input type="radio" name="level" value="NOVICE">Умерено</label><br>
-    <label><input type="radio" name="level" value="MASTER">Трудно</label>
-  </section>
-  <div id="container">
-    <div class="timer"></div>
-    <div class="text"></div>
-    <br>
-    <br>
-    <div class="colors"></div>
-  </div>
+  <table width="500px" height="300px" style="margin-left: 100px;">
+        <tr>
+          <td align="center">
+            <h1>Еднакви символи<br><br></h1>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <div class="alert alert-info"><b>Изберете ниво, след което изберете символ и маркирайте всички негови повторения.</b></div>
+          </td>
+        </tr>
+        <tr>
+          <td> 
+            <section id="level-dialog">
+              Изберете ниво на трудност:<br><br>
+              <label><input type="radio" name="level" value="BEGINNER">Лесно</label><br>
+              <label><input type="radio" name="level" value="NOVICE">Умерено</label><br>
+              <label><input type="radio" name="level" value="MASTER">Трудно</label>
+            </section>
+            <div id="container">
+              <div class="timer"></div>
+              <div class="text"></div>
+              <br>
+              <br>
+              <div class="colors"></div>
+            </div>
+          </td>
+        </tr>
+      </table>
   <script src="./src/lib/jquery/dist/jquery.js"></script>
   <script src="./src/lib/randomcolors/randomColor.js"></script>
   <script src="./src/lib/EventEmitter/EventEmitter.js"></script>
