@@ -52,6 +52,7 @@
   color: #999999;
   display: block;
   text-decoration: none;
+  font-size: 18px;
 }
 
 .sidebar-nav li a:hover {
