@@ -19,10 +19,10 @@
 }
 
 #sidebar-wrapper {
-  margin-left: -250px;
-  left: 250px;
-  width: 250px;
-  background: #000;
+  margin-left: -200px;
+  left: 200px;
+  width: 200px;
+  background: #fff;
   position: fixed;
   height: 100%;
   overflow-y: auto;
@@ -32,12 +32,12 @@
 
 #page-content-wrapper {
   width: 100%;
-}
+} 
 
 .sidebar-nav {
   position: absolute;
   top: 0;
-  width: 250px;
+  width: 200px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -55,7 +55,7 @@
 }
 
 .sidebar-nav li a:hover {
-  color: #fff;
+  color: #ccc;
   background: rgba(255,255,255,0.2);
   text-decoration: none;
 }
@@ -66,7 +66,7 @@
 }
 
 .sidebar-nav > .sidebar-brand {
-  height: 65px;
+  height: 120px;
   line-height: 60px;
   font-size: 18px;
 }
@@ -221,3 +221,5 @@ a.jp-stop {
 div.jp-audio ul.jp-controls {
   width: 100% !important;
 }
+
+#### NAV BAR #####
