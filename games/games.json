@@ -22,5 +22,13 @@
     "instructions": {
       "ogg": "same-letters.ogg"
     }
-  }
+  },
+  {
+    "id": "connect-dots",
+    "title": "Свържете точките",
+    "description": "Свържете точките, така че да нарисувате показаното изображение",
+    "instructions": {
+      "m4a": "connectinstructions.m4a"
+    }
+  }  
 ]

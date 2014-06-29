@@ -1,0 +1,70 @@
+﻿{
+  "countOfDrawingsForEachLevel": 2,
+  "drawings": [
+    {"rows": 4, "cols": 6, "pattern":[
+      {"fromCol": 1, "fromRow": 2, "toCol": 2, "toRow": 3},
+      {"fromCol": 2, "fromRow": 3, "toCol": 3, "toRow": 2},
+      {"fromCol": 3, "fromRow": 2, "toCol": 4, "toRow": 2},
+      {"fromCol": 4, "fromRow": 2, "toCol": 5, "toRow": 3},
+      {"fromCol": 5, "fromRow": 3, "toCol": 6, "toRow": 2}
+    ]},
+    {"rows": 5, "cols": 7, "pattern":[
+      {"fromCol": 1, "fromRow": 3, "toCol": 1, "toRow": 4},
+      {"fromCol": 1, "fromRow": 4, "toCol": 3, "toRow": 4},
+      {"fromCol": 3, "fromRow": 3, "toCol": 3, "toRow": 4},
+      {"fromCol": 3, "fromRow": 3, "toCol": 4, "toRow": 2},
+      {"fromCol": 4, "fromRow": 2, "toCol": 5, "toRow": 3},
+      {"fromCol": 5, "fromRow": 3, "toCol": 5, "toRow": 4},
+      {"fromCol": 5, "fromRow": 4, "toCol": 7, "toRow": 4},
+      {"fromCol": 7, "fromRow": 3, "toCol": 7, "toRow": 4}
+    ]},
+    {"rows": 7, "cols": 5, "pattern":[
+      {"fromCol": 2, "fromRow": 1, "toCol": 2, "toRow": 3},
+      {"fromCol": 2, "fromRow": 3, "toCol": 4, "toRow": 3},
+      {"fromCol": 4, "fromRow": 3, "toCol": 4, "toRow": 5},
+      {"fromCol": 2, "fromRow": 5, "toCol": 4, "toRow": 5},
+      {"fromCol": 2, "fromRow": 5, "toCol": 2, "toRow": 7}
+    ]},
+    {"rows": 5, "cols": 5, "pattern":[
+      {"fromCol": 2, "fromRow": 1, "toCol": 4, "toRow": 1},
+      {"fromCol": 2, "fromRow": 3, "toCol": 4, "toRow": 1},
+      {"fromCol": 2, "fromRow": 3, "toCol": 4, "toRow": 3},
+      {"fromCol": 2, "fromRow": 5, "toCol": 4, "toRow": 3},
+      {"fromCol": 2, "fromRow": 5, "toCol": 4, "toRow": 5}
+    ]},
+    {"rows": 12, "cols": 11, "pattern":[
+      {"fromCol": 2, "fromRow": 6, "toCol": 6, "toRow": 2},
+      {"fromCol": 6, "fromRow": 2, "toCol": 10, "toRow": 6},
+      {"fromCol": 2, "fromRow": 6, "toCol": 10, "toRow": 6},
+      {"fromCol": 3, "fromRow": 6, "toCol": 3, "toRow": 12},
+      {"fromCol": 3, "fromRow": 12, "toCol": 9, "toRow": 12},
+      {"fromCol": 9, "fromRow": 6, "toCol": 9, "toRow": 12}
+    ]},
+    {"rows": 12, "cols": 11, "pattern":[
+      {"fromCol": 1, "fromRow": 5, "toCol": 1, "toRow": 6},
+      {"fromCol": 1, "fromRow": 5, "toCol": 2, "toRow": 5},
+      {"fromCol": 2, "fromRow": 5, "toCol": 2, "toRow": 6},
+      {"fromCol": 2, "fromRow": 6, "toCol": 3, "toRow": 6},
+      {"fromCol": 3, "fromRow": 5, "toCol": 3, "toRow": 6},
+      {"fromCol": 3, "fromRow": 5, "toCol": 4, "toRow": 5},
+      {"fromCol": 4, "fromRow": 4, "toCol": 4, "toRow": 5},
+      {"fromCol": 3, "fromRow": 3, "toCol": 4, "toRow": 4},
+      {"fromCol": 3, "fromRow": 2, "toCol": 3, "toRow": 3},
+      {"fromCol": 3, "fromRow": 2, "toCol": 9, "toRow": 2},
+      {"fromCol": 9, "fromRow": 2, "toCol": 9, "toRow": 3},
+      {"fromCol": 8, "fromRow": 4, "toCol": 9, "toRow": 3},
+      {"fromCol": 8, "fromRow": 4, "toCol": 8, "toRow": 5},
+      {"fromCol": 8, "fromRow": 5, "toCol": 9, "toRow": 5},
+      {"fromCol": 9, "fromRow": 5, "toCol": 9, "toRow": 6},
+      {"fromCol": 9, "fromRow": 6, "toCol": 10, "toRow": 6},
+      {"fromCol": 10, "fromRow": 5, "toCol": 10, "toRow": 6},
+      {"fromCol": 10, "fromRow": 5, "toCol": 11, "toRow": 5},
+      {"fromCol": 11, "fromRow": 5, "toCol": 11, "toRow": 6},
+      {"fromCol": 10, "fromRow": 7, "toCol": 11, "toRow": 6},
+      {"fromCol": 10, "fromRow": 7, "toCol": 10, "toRow": 12},
+      {"fromCol": 2, "fromRow": 12, "toCol": 10, "toRow": 12},
+      {"fromCol": 2, "fromRow": 7, "toCol": 2, "toRow": 12},
+      {"fromCol": 1, "fromRow": 6, "toCol": 2, "toRow": 7}
+    ]}
+  ]
+}

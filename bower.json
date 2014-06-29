@@ -25,6 +25,7 @@
     "es5-shim": "~2.3.0",
     "hasher": "~1.2.0",
     "js-signals": "~1.0.0",
-    "EventEmitter": "~1.0.1"
+    "EventEmitter": "~1.0.1",
+    "raphael": "~2.1.2"
   }
 }
