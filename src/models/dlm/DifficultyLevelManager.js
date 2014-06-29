@@ -36,9 +36,7 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
   DifficultyLevelManager.prototype.incrementLevel = function (gameId) {
     var level = this.difficultyLevels[gameId].getLevel();
     var currentWins = this.difficultyLevels[gameId].getCurrentWins();
-    console.log("CURRENT WINS" + currentWins);
     currentWins++;
-    console.log("INCREMENTING CURRENT WINS" + currentWins);
     this.difficultyLevels[gameId].setCurrentWins(currentWins);
     console.log('LEVEL:' + level);
     console.log("CURRENT WINS" + this.difficultyLevels[gameId].getCurrentWins());
@@ -61,6 +59,7 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
       console.log("LEVEL DECREMENT");
       level--;
       this.difficultyLevels[gameId].setLevel(level);
+      this.difficultyLevels[gameId].setCurrentWins(0);
     }
     console.log(this.getDifficultyLevels());
     localStorage.setItem('difficultyLevelManager', JSON.stringify(this.getDifficultyLevels()));
