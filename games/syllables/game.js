@@ -7,10 +7,8 @@ var usedWords = [];
 var countUsedWords = [];
 var countOfWords;
 var markUsed = [];
-var countLevels = 3;
-var currentLevel = 0;
 var indexOfWord;
-var level;
+var countLevels = 3;
 
 function randomNumber(min, max) {
   'use strict';
@@ -55,6 +53,8 @@ function resetRound() {
 
 function startNewRound() {
   'use strict';
+  var level = Dyslexio.getLevel('syllables');
+  indexOfWord = getWordIndex(level);  
   words = wordsArray[indexOfWord];
   syllables = syllablesArray[indexOfWord];
   resetRound();
@@ -78,13 +78,6 @@ function getWordIndex(level) {
   return index;
 }
 
-function chooseLevel(choosedLevel) {
-  'use strict';
-  level = Dyslexio.getLevel('syllables');
-  indexOfWord = getWordIndex(level);
-  startNewRound();
-}
-
 function init() {
   'use strict';
   var jsonData = JSON.parse($('#helpDiv').text());
@@ -100,12 +93,6 @@ function init() {
       markUsed.push(1);
     }
   }
-  chooseLevel(currentLevel);
-}
-
-function startNewGame() {
-  'use strict';
-  indexOfWord = getWordIndex(level);
   startNewRound();
 }
 
@@ -116,8 +103,7 @@ function checkSolution() {
   if (correct) {
     alert('Поздравления! Решихте правилно задачата');
     Dyslexio.correctSolution('syllables');
-    currentLevel = Dyslexio.getLevel('syllables');
-    chooseLevel(currentLevel);
+    startNewRound();
   } else {
     alert('Имате грешки в решението. Опитайте отново');
     Dyslexio.incorrectSolution('syllables');
@@ -128,7 +114,7 @@ $(function () {
   'use strict';
   $('#checkButton').click(checkSolution);
   $('#resetButton').click(resetRound);
-  $('#newRoundButton').click(startNewGame);
+  $('#newRoundButton').click(startNewRound);
   $('#helpDiv').load(fileName, init);
 });
 
