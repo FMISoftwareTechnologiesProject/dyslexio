@@ -12,6 +12,7 @@ var patternX = 10;
 var patternY = 140;
 var drawX = 500;
 var drawY = 140;
+var lineWidth = 5;
 var gridRows;
 var gridCols;
 var maxRows = 12;
@@ -54,6 +55,7 @@ function drawGrid(canvas, rows, cols, color, addDrag) {
           }
           this.line = canvas.path(['M', this.startX, this.startY, 'l', dx, dy]);
           this.line.attr('stroke', color);              
+          this.line.attr("stroke-width", lineWidth);
         },
         function(x, y, event) {
           this.startX = this.attrs.cx;
@@ -95,6 +97,7 @@ function drawLine(canvas, fromRow, fromCol, toRow, toCol, color) {
 
   var line = canvas.path(["M", fromX, fromY, "l", toX - fromX, toY - fromY]);
   line.attr("stroke", color);
+  line.attr("stroke-width", lineWidth);
 }
 
 function drawPattern(pattern) {
@@ -210,7 +213,6 @@ function isCorrectSolution() {
 
 function checkSolution() {
   'use strict';
-  console.log(solution);
   if (isCorrectSolution()) {
     alert('Поздравления! Решихте правилно задачата');
     Dyslexio.correctSolution('connect-dots');
