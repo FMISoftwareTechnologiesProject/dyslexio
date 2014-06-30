@@ -4,8 +4,8 @@ var Dyslexio = Dyslexio || {};
 Dyslexio.Models = Dyslexio.Models || {};
 
 Dyslexio.Models.DifficultyLevelManager = (function () {
-
-  var INSTANCE;
+  var STORAGE_KEY = 'DifficultyLevelManager',
+      INSTANCE;
 
   function DifficultyLevelManager() {
     if (!(this instanceof DifficultyLevelManager)) {
@@ -30,7 +30,7 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
     var self = this;
     self.difficultyLevels[gameId] = dl;
     console.log(this.getDifficultyLevels());
-    localStorage.setItem('difficultyLevelManager', JSON.stringify(this.getDifficultyLevels()));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.getDifficultyLevels()));
   };
 
   DifficultyLevelManager.prototype.incrementLevel = function (gameId) {
@@ -49,7 +49,7 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
       }
     }
     console.log(this.getDifficultyLevels());
-    localStorage.setItem('difficultyLevelManager', JSON.stringify(this.getDifficultyLevels()));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.getDifficultyLevels()));
   };
 
   DifficultyLevelManager.prototype.decrementLevel = function (gameId) {
@@ -62,12 +62,12 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
       this.difficultyLevels[gameId].setCurrentWins(0);
     }
     console.log(this.getDifficultyLevels());
-    localStorage.setItem('difficultyLevelManager', JSON.stringify(this.getDifficultyLevels()));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.getDifficultyLevels()));
   };
 
   DifficultyLevelManager.prototype.setMistakes = function (gameId, mistakes) {
     this.difficultyLevels[gameId].setMistakes(mistakes);
-    localStorage.setItem('difficultyLevelManager', JSON.stringify(this.getDifficultyLevels()));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.getDifficultyLevels()));
   };
 
 
@@ -106,13 +106,14 @@ Dyslexio.Models.DifficultyLevelManager = (function () {
       function (games) {
         INSTANCE = DifficultyLevelManager();
         var self = INSTANCE;
-        if (localStorage.getItem("difficultyLevelManager") === null) {
+        if (localStorage.getItem(STORAGE_KEY) === null) {
           $.each(games, function (idx) {
-            self.difficultyLevels[games[idx].id] = new Dyslexio.Models.DifficultyLevel(1, 0, 0);
+            self.difficultyLevels[games[idx].id] =
+              new Dyslexio.Models.DifficultyLevel(1, 0, 0);
           });
-          localStorage.setItem("difficultyLevelManager", JSON.stringify(self.getDifficultyLevels()));
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(self.getDifficultyLevels()));
         } else {
-          var retrievedObj = localStorage.getItem('difficultyLevelManager');
+          var retrievedObj = localStorage.getItem(STORAGE_KEY);
           console.log(retrievedObj);
           var jsonRetrievedObj = JSON.parse(retrievedObj);
           console.log(jsonRetrievedObj);
