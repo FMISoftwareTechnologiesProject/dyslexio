@@ -90,7 +90,7 @@ Dyslexio.Views.PageContainer = {
     this.container.empty();
     this.container.append(iframe);
     iframe.attr('src', game.url);
-    iframe[0].onload = function () {
+    iframe.load(function () {
       iframe[0].contentWindow.Dyslexio = {
         setLevel: function (level) {
           game.setLevel(level);
@@ -107,7 +107,8 @@ Dyslexio.Views.PageContainer = {
         }
       };
       self.endLoading();
-    };
+      iframe[0].contentWindow.initGame();
+    });
     console.log('Loading game', gameId);
     if (game.instructions) {
       this.showAudio(game);

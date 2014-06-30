@@ -110,11 +110,11 @@ function checkSolution() {
   }
 }
 
-$(function () {
+function initGame() {
   'use strict';
   $('#checkButton').click(checkSolution);
   $('#resetButton').click(resetRound);
   $('#newRoundButton').click(startNewRound);
   $('#helpDiv').load(fileName, init);
-});
+}
 
