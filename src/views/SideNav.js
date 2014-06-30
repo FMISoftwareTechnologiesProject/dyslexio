@@ -7,7 +7,7 @@ Dyslexio.Views.SideNav = {
   el: $('#side-nav'),
   buildMenuItem: function (game) {
     var li = $('<li/>'),
-        item = $('<a align="center" href="#/game/' + game.id + '"/><img src="../../games/' + game.id + '/thumb.jpg" width="60px" height="60px" style="position: relative; left: 80px;"/>');
+        item = $('<a align="center" href="#/game/' + game.id + '"/><img src="../games/' + game.id + '/thumb.jpg" width="60px" height="60px" style="position: relative; left: 80px;"/>');
 
     item.data('game-id', game.id);
     item.text(game.title);
