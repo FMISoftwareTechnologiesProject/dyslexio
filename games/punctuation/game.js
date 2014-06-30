@@ -50,12 +50,11 @@ function resetRound() {
 
 function startNewRound() {
   'use strict';
-  text = textsArray[indexOfText].replace(/\./g,
-          '<span class="droppable">&nbsp;</span>')
-         .replace(/,/g, '<span class="droppable">&nbsp;</span>')
-         .replace(/\?/g, '<span class="droppable">&nbsp;</span>')
-         .replace(/\!/g, '<span class="droppable">&nbsp;</span>')
-         .replace(/\;/g, '<span class="droppable">&nbsp;</span>');
+  text = textsArray[indexOfText].replace(/\./g,'<span class="droppable"></span>')
+         .replace(/,/g, '<span class="droppable"></span>')
+         .replace(/\?/g, '<span class="droppable"></span>')
+         .replace(/\!/g, '<span class="droppable"></span>')
+         .replace(/\;/g, '<span class="droppable"></span>');
   $('#punctuationHolder').empty();
   var len = punctSymbols.length + level - 2;
   for (var i = 0; i < len; i += 1) {
