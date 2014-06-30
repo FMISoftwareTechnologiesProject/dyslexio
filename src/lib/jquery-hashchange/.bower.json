@@ -9,6 +9,5 @@
   },
   "_source": "git://github.com/cowboy/jquery-hashchange.git",
   "_target": "*",
-  "_originalSource": "jquery-hashchange",
-  "_direct": true
+  "_originalSource": "jquery-hashchange"
 }
