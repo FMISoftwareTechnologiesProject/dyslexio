@@ -7,34 +7,28 @@
 </head>
 <body>
   <table width="500px" height="300px" style="margin-left: 100px;">
-        <tr>
-          <td align="center">
-            <h1>Еднакви символи<br><br></h1>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            <div class="alert alert-info" style="font-size: 18px;"><b>Изберете ниво, след което изберете символ и маркирайте всички негови повторения.</b></div>
-          </td>
-        </tr>
-        <tr>
-          <td> 
-            <section id="level-dialog">
-              Изберете ниво на трудност:<br><br>
-              <label><input type="radio" name="level" value="BEGINNER">Лесно</label><br>
-              <label><input type="radio" name="level" value="NOVICE">Умерено</label><br>
-              <label><input type="radio" name="level" value="MASTER">Трудно</label>
-            </section>
-            <div id="container">
-              <div class="timer"></div>
-              <div class="text"></div>
-              <br>
-              <br>
-              <div class="colors"></div>
-            </div>
-          </td>
-        </tr>
-      </table>
+    <tr>
+      <td align="center">
+        <h1>Еднакви символи<br><br></h1>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <div class="alert alert-info" style="font-size: 18px;"><b>Изберете ниво, след което изберете символ и маркирайте всички негови повторения.</b></div>
+      </td>
+    </tr>
+    <tr>
+      <td> 
+        <div id="container">
+          <div class="timer"></div>
+          <div class="text"></div>
+          <br>
+          <br>
+          <div class="colors"></div>
+        </div>
+      </td>
+    </tr>
+  </table>
   <script src="../../src/lib/jquery/jquery.js"></script>
   <script src="../../src/lib/randomcolors/randomColor.js"></script>
   <script src="../../src/lib/EventEmitter/EventEmitter.js"></script>
