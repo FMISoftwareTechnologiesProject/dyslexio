@@ -58,6 +58,8 @@ Game.prototype.letterClicked = function (l, elem) {
     this.selected[l] = this.selected[l] || 0;
     this.selected[l] += 1;
     if (this.marked === this.text.text.replace(/\s/g, '').length) {
+      Dyslexio.correctSolution('same-letters');
+      this.setLevel(Dyslexio.getLevel('same-letters'));
       alert('Поздравления! Вие маркирахте всички букви успешно!');
       this.start();
     }
