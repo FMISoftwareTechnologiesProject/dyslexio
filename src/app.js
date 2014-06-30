@@ -11,8 +11,6 @@
     console.log('Initialized', data);
     Dyslexio.Models.GameFactory.getInstance()
     .getGame('game1');
-
-    
   });
 
   Dyslexio.Models.DifficultyLevelManager.init()
