@@ -30,5 +30,13 @@
     "instructions": {
       "m4a": "connectinstructions.m4a"
     }
+  },
+ {
+    "id": "symmetric",
+    "title": "Симетрия",
+    "description": "Изберете симетрична картинка и поставете.",
+    "instructions": {
+      "ogg": "SymetricGameEasyPart.ogg"
+    }
   }  
 ]

@@ -1,14 +1,13 @@
-var fileName = 'texts.txt';
-var punctSymbols = [',', '.', '?', ';', '!'];
-var text;
-var textsArray;
-var usedTexts = [];
-var countUsedTexts = [];
-var countOfTexts;
+var fileName = 'imgs.txt';
+var imgss;
+var imgsArray;
+var usedImgs = [];
+var countUsedImgs = [];
+var countOfimgs;
 var markUsed = [];
 var countLevels = 3;
 var currentLevel = 0;
-var indexOfText;
+var indexOfimg;
 var level;
 
 function randomNumber(min, max) {
@@ -16,18 +15,18 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function getTextIndex(level) {
+function getimgIndex(level) {
   'use strict';
-  if (countUsedTexts[level] === countOfTexts) {
-    countUsedTexts[level] = 0;
+  if (countUsedImgs[level] === countOfimgs) {
+    countUsedImgs[level] = 0;
     markUsed[level] += 1;
   }
   var index;
   while (true) {
-    index = randomNumber(level  * countOfTexts, (level + 1) * countOfTexts - 1);
-    if (usedTexts[index] !== markUsed[level]) {
-      usedTexts[index] = markUsed[level];
-      countUsedTexts[level] += 1;
+    index = randomNumber(level  * countOfimgs, (level + 1) * countOfimgs - 1);
+    if (usedImgs[index] !== markUsed[level]) {
+      usedImgs[index] = markUsed[level];
+      countUsedImgs[level] += 1;
       break;
     }
   }
@@ -37,7 +36,7 @@ function getTextIndex(level) {
 function resetRound() {
   'use strict';
   $('#sentenceHolder').empty();
-  $('#sentenceHolder').html(text);
+  $('#sentenceHolder').html(imgss);
 
   $('.droppable').droppable({
     hoverClass: 'drop-hover',
@@ -50,17 +49,11 @@ function resetRound() {
 
 function startNewRound() {
   'use strict';
-  text = textsArray[indexOfText].replace(/\./g,
-          '<span class="droppable">&nbsp;</span>')
-         .replace(/,/g, '<span class="droppable">&nbsp;</span>')
-         .replace(/\?/g, '<span class="droppable">&nbsp;</span>')
-         .replace(/\!/g, '<span class="droppable">&nbsp;</span>')
-         .replace(/\;/g, '<span class="droppable">&nbsp;</span>');
+  imgss = '<img src='+imgsArray[indexOfimg][1]+'>'+'<span id="p" class="droppable">&nbsp;</span>'; 
   $('#punctuationHolder').empty();
-  var len = punctSymbols.length + level - 2;
-  for (var i = 0; i < len; i += 1) {
-    $('<span />',
-      {text: punctSymbols[i], class: 'draggable'})
+  var len = level + 4;
+  for (var i = 2; i < len; i += 1) {
+    $('<span class="draggable"><img id="t" src='+imgsArray[indexOfimg][i]+'>'+'</span>')
       .appendTo('#punctuationHolder');
   }
   $('.draggable').draggable({revert: true, revertDuration: 0});
@@ -69,22 +62,22 @@ function startNewRound() {
 
 function chooseLevel(choosedLevel) {
   'use strict';
-  level = Dyslexio.getLevel('punctuation');
-  indexOfText = getTextIndex(level);
+  level = Dyslexio.getLevel('symmetric');
+  indexOfimg = getimgIndex(level);
   startNewRound();
 }
 
 function init() {
   'use strict';
   var jsonData = JSON.parse($('#helpDiv').text());
-  textsArray = jsonData.texts;
-  countOfTexts = jsonData.countOfTextsForEachLevel;
-  var length = countOfTexts * countLevels;
+  imgsArray = jsonData.imgs;
+  countOfimgs = jsonData.countOfImgsForEachLevel;
+  var length = countOfimgs * countLevels;
   while (length) {
     length -= 1;
-    usedTexts.push(0);
+    usedImgs.push(0);
     if (length < countLevels) {
-      countUsedTexts.push(0);
+      countUsedImgs.push(0);
       markUsed.push(1);
     }
   }
@@ -93,23 +86,21 @@ function init() {
 
 function startNewGame() {
   'use strict';
-  indexOfText = getTextIndex(level);
+  indexOfimg = getimgIndex(level);
   startNewRound();
 }
 
 function checkSolution() {
   'use strict';
-  var correct = $('#sentenceHolder').text()
-      .replace(/\u00a0/g, '')
-      .trim() === textsArray[indexOfText];
+  var correct = '\"'+$('#t').attr('src')+'\"' === imgsArray[indexOfimg][0];
   if (correct) {
     alert('Поздравления! Решихте правилно задачата');
-    Dyslexio.correctSolution('punctuation');
-    currentLevel = Dyslexio.getLevel('punctuation');
+    Dyslexio.correctSolution('symmetric');
+    currentLevel = Dyslexio.getLevel('symmetric');
     chooseLevel(currentLevel);
     } else {
      alert('Имате грешки в решението. Опитайте отново');
-     Dyslexio.incorrectSolution('punctuation');
+     Dyslexio.incorrectSolution('symmetric');
     }
 }
 
