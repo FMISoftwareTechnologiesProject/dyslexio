@@ -22,7 +22,7 @@
     "jquery-hashchange": "*",
     "jquery": "1.10",
     "jquery-ui": "~1.10.3",
-    "randomcolors": "git@github.com:davidmerfield/randomColor.git",
+    "randomcolors": "https://github.com/davidmerfield/randomColor.git",
     "es5-shim": "~2.3.0",
     "hasher": "~1.2.0",
     "js-signals": "~1.0.0",
