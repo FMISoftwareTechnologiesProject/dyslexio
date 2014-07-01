@@ -89,7 +89,7 @@ Dyslexio.Views.PageContainer = {
     this.startLoading();
     this.container.empty();
     this.container.append(iframe);
-    iframe.attr('src', location.origin + '/' + game.url);
+    iframe.attr('src', game.url);
     iframe.load(function () {
       Dyslexio.Models.DifficultyLevelManager.init()
       .then(function () {
